@@ -1,6 +1,29 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Manu.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "many"
+length = 3.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "Manu t'es un gros fils de chêne", "Non mais c'est vrai quoi !", "À qui la suite ?" ]
+}
 
 [node name="Node" type="Node" index="0"]
+
+script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="." index="0"]
 
@@ -22,5 +45,15 @@ text = "Manu t'es un gros fils de chêne"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="anim" type="AnimationPlayer" parent="Label" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/many = SubResource( 1 )
+blend_times = [  ]
 
 
