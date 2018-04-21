@@ -9,8 +9,8 @@ func _ready():
 	# Initialization here
 	pass
 	
-func set_target(target):
-	$Tween.interpolate_property(self, "position", self.position, target, 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
+func set_target_position(target_position):
+	$Tween.interpolate_property(self, "position", self.position, target_position, 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
 #func _process(delta):
