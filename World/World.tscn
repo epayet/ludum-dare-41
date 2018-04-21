@@ -3,7 +3,7 @@
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://background.png" type="Texture" id=4]
+[ext_resource path="res://World/Wall.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -22,24 +22,7 @@ next_spawn = 0
 SCALE = 30
 speed = 0.5
 
-[node name="Tetrominos" type="Node2D" parent="." index="0"]
-
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 17, 580 )
-
-[node name="ShootingSight" type="Line2D" parent="." index="2"]
-
-points = PoolVector2Array( 0, 0, 0, 0 )
-width = 10.0
-default_color = Color( 0.4, 0.5, 1, 1 )
-texture_mode = -1002918736
-sharp_limit = 2.0
-round_precision = 8
-
-[node name="Walls" type="Area2D" parent="." index="3" groups=[
-"walls",
-]]
+[node name="Area2D3" type="Area2D" parent="." index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -49,42 +32,126 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="WallRight" type="CollisionShape2D" parent="Walls" index="0" groups=[
+[node name="Tetrominos" type="Node2D" parent="." index="1"]
+
+[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 17, 580 )
+
+[node name="ShootingSight" type="Line2D" parent="." index="3"]
+
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 10.0
+default_color = Color( 0.4, 0.5, 1, 1 )
+texture_mode = -1002918736
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="background" type="Sprite" parent="." index="4"]
+
+z_index = -1
+centered = false
+_sections_unfolded = [ "Offset", "Z Index" ]
+
+[node name="Walls" type="Node2D" parent="." index="5"]
+
+[node name="WallRight" type="Area2D" parent="Walls" index="0" groups=[
+"walls",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 5
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallRight" index="0" groups=[
 "walls",
 ]]
 
 position = Vector2( 607.279, 293.496 )
 rotation = -1.5708
 shape = SubResource( 1 )
+script = ExtResource( 4 )
+normal_vector = Vector2( -1, 0 )
 
-[node name="WallTop" type="CollisionShape2D" parent="Walls" index="1" groups=[
+[node name="WallTop" type="Area2D" parent="Walls" index="1" groups=[
+"walls",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 5
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTop" index="0" groups=[
 "walls",
 ]]
 
 position = Vector2( 337, -10 )
 shape = SubResource( 1 )
+script = ExtResource( 4 )
+normal_vector = Vector2( 0, -1 )
 
-[node name="WallBottom" type="CollisionShape2D" parent="Walls" index="2" groups=[
+[node name="WallBottom" type="Area2D" parent="Walls" index="2" groups=[
+"walls",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 5
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBottom" index="0" groups=[
 "walls",
 ]]
 
 position = Vector2( 327, 610 )
 shape = SubResource( 1 )
+script = ExtResource( 4 )
+normal_vector = Vector2( 0, 1 )
 
-[node name="WallLeft" type="CollisionShape2D" parent="Walls" index="3" groups=[
+[node name="WallLeft" type="Area2D" parent="Walls" index="3" groups=[
+"walls",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 5
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallLeft" index="0" groups=[
 "walls",
 ]]
 
 position = Vector2( -13.3311, 306.322 )
 rotation = -1.5708
 shape = SubResource( 1 )
-
-[node name="background" type="Sprite" parent="." index="4"]
-
-z_index = -1
-texture = ExtResource( 4 )
-centered = false
-_sections_unfolded = [ "Offset", "Z Index" ]
+script = ExtResource( 4 )
+normal_vector = Vector2( 1, 0 )
 
 [connection signal="action_done" from="Player" to="." method="_on_Player_action_done"]
 

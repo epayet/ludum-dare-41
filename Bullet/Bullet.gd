@@ -1,6 +1,6 @@
 extends Node2D
 
-var SPEED = 200
+var SPEED = 800
 
 # class member variables go here, for example:
 # var a = 2
@@ -23,4 +23,8 @@ func set_target_position(target_position):
 
 
 func _on_Area2D_area_entered(area):
-	pass # replace with function body
+	if area.is_in_group('walls'):
+		print('wall?', area)
+		var normal = area.get_node("CollisionShape2D").get("normal_vector")
+		var reflect = self.position.bounce(normal)
+		self.set_target_position(reflect)
