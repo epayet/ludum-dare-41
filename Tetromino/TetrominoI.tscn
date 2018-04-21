@@ -5,6 +5,7 @@
 
 [node name="I" type="Node2D"]
 
+editor/display_folded = true
 script = ExtResource( 1 )
 orientation = false
 

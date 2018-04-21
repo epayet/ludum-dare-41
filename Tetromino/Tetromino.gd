@@ -1,6 +1,7 @@
 extends Node2D
 
 signal hit
+var player
 export (bool) var orientation = false
 
 func _ready():
@@ -11,11 +12,9 @@ func tick():
 	if position.y > get_viewport().size.y + 100:
 		remove()
 
-func _on_Area2D_area_entered(area):
-	print(area.get_name())
-	if area.get_name() == "player":
-		print("oups")
-	print("collision")
+func _on_Area2D_area_entered(body):
+	if body == player:
+		print("encore mieux")
 
 func remove():
 	queue_free()
