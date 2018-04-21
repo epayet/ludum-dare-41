@@ -12,7 +12,6 @@ export (Vector2) var grid_position = Vector2(0, 0)
 var OFFSET = Vector2(Consts.GRID_CELL_SIZE/2, Consts.GRID_CELL_SIZE/2)
 
 func _ready():
-	print(grid_position)
 	$Tween.connect("tween_completed", self, "move_done")
 	reset_move()
 

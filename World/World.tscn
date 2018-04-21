@@ -20,6 +20,7 @@ tetrominos = ExtResource( 2 )
 spawn_rate = 5
 next_spawn = 0
 SCALE = 30
+speed = 0.5
 
 [node name="Tetrominos" type="Node2D" parent="." index="0"]
 

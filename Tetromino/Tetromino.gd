@@ -34,7 +34,6 @@ func init(grid_position, shape, player):
 		block.init(player, grid_position + pos)
 		add_child(block)
 		block.connect("moved", self, "block_moved")
-		block.next_move = Vector2(0, 100)
 	
 func move(duration):
 	for block in get_children():
@@ -45,6 +44,7 @@ func block_moved():
 	if is_moving and not has_children_moving():
 		is_moving = false
 		emit_signal("moved")
+
 	if get_child_count() == 0:
 		queue_free()
 

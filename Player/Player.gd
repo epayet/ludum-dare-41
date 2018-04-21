@@ -7,6 +7,7 @@ enum DIRECTION {
 	RIGHT
 }
 
+var can_do_action = false
 var moving = false
 var origin = Vector2()
 var current_position = Vector2()
@@ -22,10 +23,9 @@ func _ready():
 	time_left_before_next_move = 0
 	get_node("Tween").connect("tween_completed", self, "on_player_action_completed")
 	moving = false
-	pass
 
 func _process(delta):
-	if !moving:
+	if !moving and can_do_action:
 		if Input.is_action_pressed("ui_left"):
 			move_to(LEFT)
 		if Input.is_action_pressed("ui_right"):
