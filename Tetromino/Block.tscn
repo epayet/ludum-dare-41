@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 26.1308, 25.8712 )
+extents = Vector2( 16, 16 )
 
 [node name="Block" type="Area2D"]
 
@@ -20,19 +20,19 @@ collision_mask = 7
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index" ]
 speed = 1
 grid_position = Vector2( 0, 0 )
 
 [node name="Shape" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Visibility" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Tween" type="Tween" parent="." index="2"]
 
