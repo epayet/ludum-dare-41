@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+grid_width = 10
+grid_height = 15
+tetrominos = null
+
+[node name="Tetrominos" type="Node2D" parent="." index="0"]
+
+[node name="Tetromino1" parent="Tetrominos" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 120, 240 )
+
+[node name="Tetromino2" parent="Tetrominos" index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 360, 240 )
+
+[node name="Tetromino3" parent="Tetrominos" index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 180, 60 )
+
+[node name="Tetromino4" parent="Tetrominos" index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 360, 60 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 60, 540 )
+SCALE = 60
+
+[connection signal="tick" from="Player" to="." method="_on_Player_move"]
+
+

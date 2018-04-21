@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="Player" type="Node2D"]
+
+position = Vector2( 292.398, 359.02 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+time_unit = 0.2
+SCALE = 30
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+
