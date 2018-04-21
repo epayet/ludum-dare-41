@@ -2,10 +2,8 @@ extends Node
 
 var state = WAITING_PLAYER_ACTION
 var Bullet = load("res://Bullet/Bullet.tscn")
-export (int) var grid_width = 10
-export (int) var grid_height = 20
 export (PackedScene) var tetrominos
-export (int) var spawn_rate = 50
+export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
 export (int) var speed = 0.5
@@ -31,7 +29,7 @@ func update_state():
 
 func spawn_new_tetromino():
 	next_spawn = spawn_rate
-	var tetromino = random_tetromino_at(Vector2(randi() % grid_width, 0))
+	var tetromino = random_tetromino_at(Vector2(randi() % Consts.GRID_WIDTH, 0))
 	$Tetrominos.add_child(tetromino)
 
 func random_tetromino_at(grid_position):
@@ -60,6 +58,7 @@ func update_sight_shooting(target):
 	var endPosition = (target - playerPosition).normalized() * 1000
 	endPosition += playerPosition
 	$ShootingSight.points[1] = endPosition
+
 func action_done():
 	next_spawn -= 1
 	if next_spawn <= 0:

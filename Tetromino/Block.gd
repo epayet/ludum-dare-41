@@ -11,7 +11,7 @@ var OFFSET = Vector2(Consts.GRID_CELL_SIZE/2, Consts.GRID_CELL_SIZE/2)
 
 func _ready():
 	$Tween.connect("tween_completed", self, "move_done")
-	reset_move()
+
 
 func init(player, grid_position, speed = 1):
 	self.player = player
@@ -20,6 +20,7 @@ func init(player, grid_position, speed = 1):
 	self.speed = speed
 	
 	connect("area_entered", self, "object_entered_area")
+	reset_move()
 
 func reset_move():
 	next_move = Vector2(0, speed)

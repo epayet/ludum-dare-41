@@ -27,10 +27,20 @@ func _process(delta):
 
 func get_random_shape():
 	return SHAPES[randi() % SHAPES.size()]
+	
+func compute_shape_dimensions(shape):
+	var dim = Vector2(0, 0)
+	for block in shape:
+		dim.x = max(dim.x, block.x)
+		dim.y = max(dim.y, block.y)
+	return dim
 
 func init(grid_position, shape, player):
 	self.player = player
 	var block_scn = preload("res://Tetromino/Block.tscn")
+	var dim = compute_shape_dimensions(shape)
+	grid_position.x = min(grid_position.x, Consts.GRID_WIDTH - dim.x - 1)
+	
 	for pos in shape:
 		var block = block_scn.instance()
 		block.init(player, grid_position + pos)

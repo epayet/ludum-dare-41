@@ -28,7 +28,7 @@ func _process(delta):
 	if !moving and can_do_action:
 		if (Input.is_action_pressed("ui_left")) && (current_position.x > 0):
 			move_to(LEFT)
-		if Input.is_action_pressed("ui_right") && (current_position.x < get_parent().grid_width):
+		if Input.is_action_pressed("ui_right") && (current_position.x < Consts.GRID_WIDTH):
 			move_to(RIGHT)
 	position = current_position * SCALE
 
