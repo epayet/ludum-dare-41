@@ -24,7 +24,7 @@ SCALE = 30
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 47, 550 )
+position = Vector2( 17, 580 )
 
 [node name="ShootingSight" type="Line2D" parent="." index="2"]
 

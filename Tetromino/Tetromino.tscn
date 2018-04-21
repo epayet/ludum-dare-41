@@ -7,6 +7,4 @@
 script = ExtResource( 1 )
 orientation = false
 
-[node name="Pivot" type="Node2D" parent="." index="0"]
-
 
