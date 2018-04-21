@@ -3,7 +3,7 @@
 [ext_resource path="res://Tetromino/Tetromino.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[node name="L" type="Node2D" index="0"]
+[node name="S" type="Node2D"]
 
 script = ExtResource( 1 )
 orientation = false
@@ -40,7 +40,7 @@ texture = ExtResource( 2 )
 [node name="Block3" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
-position = Vector2( 0, -40 )
+position = Vector2( -20, 0 )
 scale = Vector2( 0.34375, 0.34375 )
 __meta__ = {
 "_edit_group_": true
@@ -55,7 +55,7 @@ texture = ExtResource( 2 )
 [node name="Block4" type="Node2D" parent="." index="3"]
 
 editor/display_folded = true
-position = Vector2( 20, 0 )
+position = Vector2( 20, -20 )
 scale = Vector2( 0.34375, 0.34375 )
 __meta__ = {
 "_edit_group_": true
@@ -69,6 +69,7 @@ texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." index="4"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -80,7 +81,7 @@ audio_bus_name = "Master"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -10, 10, -10, -50, 10, -50, 10, -10, 30, -10, 30, 10 )
+polygon = PoolVector2Array( -10, -30, -10, -10, -30, -10, -30, 10, 10, 10, 10, -10, 30, -10, 30, -30 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
