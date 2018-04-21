@@ -5,7 +5,7 @@ var Bullet = load("res://Bullet/Bullet.tscn")
 export (int) var grid_width = 10
 export (int) var grid_height = 20
 export (PackedScene) var tetrominos
-export (int) var spawn_rate = 5
+export (int) var spawn_rate = 50
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
 export (int) var speed = 0.5
@@ -22,8 +22,13 @@ func _ready():
 func _process(delta):
 	randomize()
 	$ShootingSight.points[0] = $Player.position
-
 	
+	update_state()
+
+func update_state():
+	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
+		set_state(State.WAITING_PLAYER_ACTION)
+
 func spawn_new_tetromino():
 	next_spawn = spawn_rate
 	var tetromino = random_tetromino_at(Vector2(randi() % grid_width, 0))
@@ -32,7 +37,6 @@ func spawn_new_tetromino():
 func random_tetromino_at(grid_position):
 	var tetrominos = preload("res://Tetromino/Tetromino.tscn").instance()
 	tetrominos.init(grid_position, tetrominos.get_random_shape(), $Player)
-	tetrominos.connect("moved", self, "tetromino_moved")
 	return tetrominos
 
 func _input(event):
@@ -69,10 +73,6 @@ func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
 	for tetromino in $Tetrominos.get_children():
 		tetromino.move(speed)
-
-func tetromino_moved():
-	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
-		set_state(State.WAITING_PLAYER_ACTION)
 
 func set_state(new_state):
 	$Player.can_do_action = new_state == State.WAITING_PLAYER_ACTION

@@ -1,7 +1,5 @@
 extends Area2D
 
-signal moved
-
 var player
 var next_move
 var is_moving = false
@@ -36,10 +34,10 @@ func move(duration):
 func move_done(object, key):
 	is_moving = false
 	reset_move()
-	if position.y > get_viewport().size.y + 100:
-		queue_free()
-	emit_signal("moved")
 	
+	if position.y > get_viewport().size.y + Consts.GRID_CELL_SIZE:
+		queue_free()
+
 func object_entered_area(other_area):
 	if other_area == player:
 		print("player dead")
