@@ -5,7 +5,7 @@ signal moved
 var player
 var next_move
 var is_moving = false
-const GRID_SIZE =25
+
 export (int) var speed = 1
 export (Vector2) var grid_position = Vector2(0, 0)
 
@@ -17,7 +17,7 @@ func _ready():
 func init(player, grid_position, speed = 1):
 	self.player = player
 	self.grid_position = grid_position
-	position = grid_position * GRID_SIZE
+	position = grid_position * Consts.GRID_CELL_SIZE
 	self.speed = speed
 	
 	connect("area_entered", self, "object_entered_area")
@@ -28,7 +28,7 @@ func reset_move():
 func move(duration):
 	is_moving = true
 	grid_position = grid_position + next_move
-	$Tween.interpolate_property(self, "position", position, grid_position * GRID_SIZE, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "position", position, grid_position * Consts.GRID_CELL_SIZE, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
 

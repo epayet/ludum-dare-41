@@ -10,8 +10,6 @@ export (int) var SCALE = 30
 
 func _ready():
 	next_spawn = 0
-	
-	pass
 
 func _process(delta):
 	randomize()
