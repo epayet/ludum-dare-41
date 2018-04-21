@@ -27,7 +27,8 @@ func set_target_position(target_position):
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('walls'):
-		print('wall?', area)
 		var normal = area.get_node("CollisionShape2D").get("normal_vector")
-		var reflect = self.position.reflect(_direction)
-		self.set_target_position(reflect)
+		var reflect = _direction.reflect(normal)
+		var destination = (reflect * 1000)
+		print(destination, 'desctioansotisa')
+		self.set_target_position(destination)
