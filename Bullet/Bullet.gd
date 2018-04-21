@@ -20,3 +20,7 @@ func set_target_position(target_position):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+
+func _on_Area2D_area_entered(area):
+	pass # replace with function body
