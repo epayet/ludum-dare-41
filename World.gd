@@ -2,7 +2,7 @@ extends Node
 
 var Bullet = load("res://Bullet/Bullet.tscn")
 export (int) var grid_width = 10
-export (int) var grid_height = 15
+export (int) var grid_height = 20
 export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
