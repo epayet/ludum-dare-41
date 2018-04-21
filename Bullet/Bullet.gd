@@ -1,6 +1,8 @@
 extends Node2D
 
-var SPEED = 200
+var SPEED = 800
+
+var _direction = null
 
 # class member variables go here, for example:
 # var a = 2
@@ -12,6 +14,7 @@ func _ready():
 	pass
 	
 func set_target_position(target_position):
+	_direction = (target_position - self.position).normalized()
 	var time_to_target = self.position.distance_to(target_position) / SPEED
 	$Tween.interpolate_property(self, "position", self.position, target_position, time_to_target, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
@@ -23,4 +26,8 @@ func set_target_position(target_position):
 
 
 func _on_Area2D_area_entered(area):
-	pass # replace with function body
+	if area.is_in_group('walls'):
+		print('wall?', area)
+		var normal = area.get_node("CollisionShape2D").get("normal_vector")
+		var reflect = self.position.reflect(_direction)
+		self.set_target_position(reflect)
