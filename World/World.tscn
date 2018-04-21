@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 397, 10 )
 
 [node name="World" type="Node2D" index="0"]
 
@@ -20,6 +25,57 @@ next_spawn = 0
 
 position = Vector2( 17, 580 )
 SCALE = 60
+
+[node name="ShootingSight" type="Line2D" parent="." index="2"]
+
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 10.0
+default_color = Color( 0.4, 0.5, 1, 1 )
+texture_mode = -1002918736
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="Walls" type="Area2D" parent="." index="3" groups=[
+"walls",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="WallRight" type="CollisionShape2D" parent="Walls" index="0" groups=[
+"walls",
+]]
+
+position = Vector2( 607.279, 293.496 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="WallTop" type="CollisionShape2D" parent="Walls" index="1" groups=[
+"walls",
+]]
+
+position = Vector2( 337, -10 )
+shape = SubResource( 1 )
+
+[node name="WallBottom" type="CollisionShape2D" parent="Walls" index="2" groups=[
+"walls",
+]]
+
+position = Vector2( 327, 610 )
+shape = SubResource( 1 )
+
+[node name="WallLeft" type="CollisionShape2D" parent="Walls" index="3" groups=[
+"walls",
+]]
+
+position = Vector2( -13.3311, 306.322 )
+rotation = -1.5708
+shape = SubResource( 1 )
 
 [connection signal="tick" from="Player" to="." method="_on_Player_move"]
 

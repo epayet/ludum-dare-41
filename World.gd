@@ -15,7 +15,7 @@ func _ready():
 
 func _process(delta):
 	randomize()
-	pass
+	$ShootingSight.points[0] = $Player.position
 
 func _on_Player_move():
 	next_spawn -= 1
@@ -34,6 +34,24 @@ func random_tetromino():
 	var tetrominos = ["L", "J", "I", "S", "Square", "T", "Z"]
 	var tetromino_type = tetrominos[randi() % tetrominos.size()]
 	return load("res://Tetromino/Tetromino" + tetromino_type + ".tscn").instance()
+
+func _input(event):
+   # Mouse in viewport coordinates
+   if event is InputEventMouseButton:
+       print("Mouse Click/Unclick at: ", event.position)
+   elif event is InputEventMouseMotion: 
+	   var playerPosition = $Player.position
+	   var endPosition = (event.position - playerPosition).normalized() * 1000
+	   endPosition += playerPosition
+	   $ShootingSight.points[1] = endPosition
+	
+	   var space_state = get_world_2d().direct_space_state
+	   var result = space_state.intersect_ray(playerPosition, endPosition, [$Player.get_node("Area2D")])
+	   if result:
+	      pass
+
+   # Print the size of the viewport
+   # print("Viewport Resolution is: ", get_viewport_rect().size)
 
 func tick():
 	for tetromino in $Tetrominos.get_children():
