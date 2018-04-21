@@ -13,7 +13,6 @@ func _on_Area2D_area_entered(area):
 	print(area.get_name())
 	if area.get_name() == "player":
 		print("oups")
-		print("oups")
 	print("collision")
 
 func remove():

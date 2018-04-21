@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 27.602, 29.02 )
+extents = Vector2( 32, 32 )
 
 [node name="Player" type="Node2D"]
 
+position = Vector2( 9.53674e-07, 9.53674e-07 )
+scale = Vector2( 0.3125, 0.3125 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -18,9 +20,8 @@ __meta__ = {
 time_unit = 0.2
 SCALE = 30
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
+[node name="Player" type="Area2D" parent="." index="0"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -30,14 +31,14 @@ audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="0"]
 
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-position = Vector2( -9.53674e-07, 9.53674e-07 )
-scale = Vector2( 0.9375, 0.9375 )
+position = Vector2( -4.58956e-06, -2.5034e-06 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 

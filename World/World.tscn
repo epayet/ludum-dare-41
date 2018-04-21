@@ -5,8 +5,9 @@
 [ext_resource path="res://Tetromino/TetrominoSquare.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
+position = Vector2( 3, 0 )
 script = ExtResource( 1 )
 grid_width = 10
 grid_height = 15
@@ -42,7 +43,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 60, 540 )
+position = Vector2( 17, 580 )
 SCALE = 60
 
 [connection signal="tick" from="Player" to="." method="_on_Player_move"]
