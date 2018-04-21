@@ -1,6 +1,6 @@
 extends Node
 
-var L = load("res://Tetromino/TetrominoL.tscn")
+var Bullet = load("res://Bullet/Bullet.tscn")
 
 export (int) var grid_width = 10
 export (int) var grid_height = 15
@@ -36,22 +36,28 @@ func random_tetromino():
 	return load("res://Tetromino/Tetromino" + tetromino_type + ".tscn").instance()
 
 func _input(event):
-   # Mouse in viewport coordinates
    if event is InputEventMouseButton:
-       print("Mouse Click/Unclick at: ", event.position)
+	   add_bullet(event.position)
    elif event is InputEventMouseMotion: 
-	   var playerPosition = $Player.position
-	   var endPosition = (event.position - playerPosition).normalized() * 1000
-	   endPosition += playerPosition
-	   $ShootingSight.points[1] = endPosition
+	   update_sight_shooting(event.position)
+		
+func add_bullet(target):
+	var bullet = Bullet.instance()
+	bullet.position = $Player.position
+	var direction = (target - $Player.position).normalized()
+	self.add_child(bullet)
 	
-	   var space_state = get_world_2d().direct_space_state
-	   var result = space_state.intersect_ray(playerPosition, endPosition, [$Player.get_node("Area2D")])
-	   if result:
-	      pass
-
-   # Print the size of the viewport
-   # print("Viewport Resolution is: ", get_viewport_rect().size)
+	
+func update_sight_shooting(target):
+	var playerPosition = $Player.position
+	var endPosition = (target - playerPosition).normalized() * 1000
+	endPosition += playerPosition
+	$ShootingSight.points[1] = endPosition
+	
+	var space_state = get_world_2d().direct_space_state
+	var result = space_state.intersect_ray(playerPosition, endPosition, [$Player.get_node("Area2D")])
+	if result:
+	   pass
 
 func tick():
 	for tetromino in $Tetrominos.get_children():
