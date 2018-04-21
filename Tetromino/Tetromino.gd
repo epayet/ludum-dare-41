@@ -4,8 +4,6 @@ signal hit
 export (bool) var orientation = false
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	pass
 
 func tick():
@@ -17,3 +15,6 @@ func _on_Area2D_area_entered(area):
 		print("oups")
 		print("oups")
 	print("collision")
+
+func remove():
+	queue_free()

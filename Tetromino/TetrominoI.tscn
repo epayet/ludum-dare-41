@@ -67,7 +67,7 @@ position = Vector2( -6.67572e-06, 1.3113e-06 )
 scale = Vector2( 0.909091, 0.909091 )
 texture = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="." index="4"]
+[node name="Collision" type="Area2D" parent="." index="4"]
 
 visible = false
 input_pickable = true
@@ -78,11 +78,11 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -10, 10, -10, -70, 10, -70, 10, 10 )
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Collision" to="." method="_on_Area2D_area_entered"]
 
 
