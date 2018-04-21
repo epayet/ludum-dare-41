@@ -32,28 +32,26 @@ func random_tetromino():
 	return load("res://Tetromino/Tetromino" + tetromino_type + ".tscn").instance()
 
 func _input(event):
-   if event is InputEventMouseButton:
+   if event is InputEventMouseButton and not event.pressed:
 	   add_bullet(event.position)
    elif event is InputEventMouseMotion: 
 	   update_sight_shooting(event.position)
 		
-func add_bullet(target):
-	var bullet = Bullet.instance()
-	bullet.position = $Player.position
-	var direction = (target - $Player.position).normalized()
-	self.add_child(bullet)
-	
+func add_bullet(mouse_position):
+	var target = _get_wall_position(mouse_position)
+	print(target, 'target')
+	print($Player.position, 'player')
+	if target:
+		var bullet = Bullet.instance()
+		bullet.position = $Player.position
+		bullet.set_target(target)
+		self.add_child(bullet)
 	
 func update_sight_shooting(target):
 	var playerPosition = $Player.position
 	var endPosition = (target - playerPosition).normalized() * 1000
 	endPosition += playerPosition
 	$ShootingSight.points[1] = endPosition
-	
-	var space_state = get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(playerPosition, endPosition, [$Player.get_node("Area2D")])
-	if result:
-	   pass
 
 func tick():
 	for tetromino in $Tetrominos.get_children():
@@ -64,3 +62,12 @@ func _on_Player_action_done():
 	if next_spawn <= 0:
 		spawn_new_tetromino()
 	tick()
+	
+func _get_wall_position(mouse_position):
+	var space_state = get_world_2d().direct_space_state
+	var endPosition = (mouse_position - $Player.position).normalized() * 1000
+	endPosition += $Player.position
+	var result = space_state.intersect_ray($Player.position, endPosition, [$Player])
+	print(result, 'result')
+	if result and result.collider.is_in_group('walls'):
+	   return result.position
