@@ -63,3 +63,8 @@ func _get_nearest_node(mouse_position):
 	var endPosition = (mouse_position - $Player.position).normalized() * 1000
 	endPosition += $Player.position
 	return space_state.intersect_ray($Player.position, endPosition, [$Player])
+
+
+func _on_Area2D_area_exited(area):
+	area.queue_free()
+	pass # replace with function body

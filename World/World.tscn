@@ -3,7 +3,11 @@
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://background.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 406.204, 20.0369 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -36,7 +40,28 @@ texture_mode = -1002918736
 sharp_limit = 2.0
 round_precision = 8
 
-[node name="Walls" type="Area2D" parent="." index="3" groups=[
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+position = Vector2( 323.742, 671.902 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Walls" type="Area2D" parent="." index="4" groups=[
 "walls",
 ]]
 
@@ -78,13 +103,8 @@ position = Vector2( -13.3311, 306.322 )
 rotation = -1.5708
 shape = SubResource( 1 )
 
-[node name="background" type="Sprite" parent="." index="4"]
-
-z_index = -1
-texture = ExtResource( 4 )
-centered = false
-_sections_unfolded = [ "Offset", "Z Index" ]
-
 [connection signal="action_done" from="Player" to="." method="_on_Player_action_done"]
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
 
 
