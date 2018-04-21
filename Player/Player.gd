@@ -1,45 +1,52 @@
 extends Node2D
 
-signal tick
+signal action_done
 
+enum DIRECTION {
+	LEFT,
+	RIGHT
+}
+
+var moving = false
 var origin = Vector2()
-var grid_position = Vector2()
 var current_position = Vector2()
-var next_position = Vector2()
 export (float) var time_unit = .2
-export (int) var SCALE = 30
+var SCALE = 30
 var time_left_before_next_move = 0
 
 func _ready():
-	origin = position
+	SCALE = get_parent().SCALE
+	current_position = position / SCALE
+	current_position.x = floor(current_position.x)
+	current_position.y = floor(current_position.y)
 	time_left_before_next_move = 0
+	get_node("Tween").connect("tween_completed", self, "on_player_action_completed")
+	moving = false
 	pass
 
 func _process(delta):
-	# use Tween
-	if time_left_before_next_move > 0:
-		time_left_before_next_move -= delta
-		update_player_position()
-	else:
+	if !moving:
 		if Input.is_action_pressed("ui_left"):
-			set_next_position(-1)
-			emit_signal("tick")
+			move_to(LEFT)
 		if Input.is_action_pressed("ui_right"):
-			set_next_position(1)
-			emit_signal("tick")
-	position = origin + grid_position * SCALE
+			move_to(RIGHT)
+	position = current_position * SCALE
 
-func set_next_position (amount):
-	current_position = grid_position
-	next_position = current_position
-	next_position.x += amount
-	time_left_before_next_move = time_unit
-	
-func update_player_position():
-	if time_left_before_next_move <= 0:
-		time_left_before_next_move = 0
-		grid_position = next_position
-	else:
-		var diff = next_position - current_position
-		var progress = (time_unit - time_left_before_next_move) / time_unit
-		grid_position = current_position + diff * progress
+func move_to(direction):
+	moving = true
+	var next_position = current_position + get_direction(direction)
+	var tween = get_node("Tween")
+	tween.interpolate_property(
+				self, "current_position",
+				current_position, next_position,
+				time_unit, Tween.TRANS_LINEAR, 0)
+	tween.start()
+
+func on_player_action_completed(object, property):
+	moving = false
+	emit_signal("action_done")
+
+func get_direction(direction):
+	match direction:
+		DIRECTION.LEFT: return Vector2(-1, 0)
+		DIRECTION.RIGHT: return Vector2(1, 0)

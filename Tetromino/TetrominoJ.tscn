@@ -3,9 +3,8 @@
 [ext_resource path="res://Tetromino/Tetromino.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[node name="J" type="Node2D" index="0"]
+[node name="J" type="Node2D"]
 
-editor/display_folded = true
 script = ExtResource( 1 )
 orientation = false
 

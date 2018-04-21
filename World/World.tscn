@@ -13,14 +13,14 @@ grid_height = 15
 tetrominos = ExtResource( 2 )
 spawn_rate = 5
 next_spawn = 0
+SCALE = 30
 
 [node name="Tetrominos" type="Node2D" parent="." index="0"]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 17, 580 )
-SCALE = 60
+position = Vector2( 47, 550 )
 
-[connection signal="tick" from="Player" to="." method="_on_Player_move"]
+[connection signal="action_done" from="Player" to="." method="_on_Player_action_done"]
 
 
