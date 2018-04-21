@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://Tetromino/TetrominoL.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tetromino/TetrominoSquare.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node2D" index="0"]
 
@@ -11,37 +10,13 @@ position = Vector2( 3, 0 )
 script = ExtResource( 1 )
 grid_width = 10
 grid_height = 15
-tetrominos = null
+tetrominos = ExtResource( 2 )
+spawn_rate = 5
+next_spawn = 0
 
 [node name="Tetrominos" type="Node2D" parent="." index="0"]
 
-[node name="Node2D" parent="Tetrominos" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 60, 60 )
-
-[node name="Node2D2" parent="Tetrominos" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 240, 120 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Node2D3" parent="Tetrominos" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 180, 240 )
-
-[node name="Node2D4" parent="Tetrominos" index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 420, 120 )
-
-[node name="Node2D5" parent="Tetrominos" index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 60, 180 )
-
-[node name="Node2D6" parent="Tetrominos" index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 360, 60 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 17, 580 )
 SCALE = 60

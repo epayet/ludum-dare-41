@@ -8,6 +8,8 @@ func _ready():
 
 func tick():
 	position.y += 30
+	if position.y > get_viewport().size.y + 100:
+		remove()
 
 func _on_Area2D_area_entered(area):
 	print(area.get_name())
