@@ -27,7 +27,7 @@ func _process(delta):
 
 func get_random_shape():
 	return SHAPES[randi() % SHAPES.size()]
-	
+
 func compute_shape_dimensions(shape):
 	var dim = Vector2(0, 0)
 	for block in shape:
@@ -39,12 +39,12 @@ func init(grid_position, shape):
 	var block_scn = preload("res://Tetromino/Block.tscn")
 	var dim = compute_shape_dimensions(shape)
 	grid_position.x = min(grid_position.x, Consts.GRID_WIDTH - dim.x - 1)
-	
+
 	for pos in shape:
 		var block = block_scn.instance()
 		block.init(grid_position + pos, Consts.ROCK_BLOCK)
 		add_child(block)
-	
+
 func move(duration):
 	for block in get_children():
 		block.move(duration)
@@ -56,5 +56,59 @@ func has_children_moving():
 			return true
 	return false
 
-func update_moves (bullet, block, normal):
-	pass
+func block_has_been_hit (bullet, block, normal):
+	match block.block_type:
+		Consts.WOOD_BLOCK:
+			get_parent().append_new_action(DestroyBlockAction.new(block))
+		Consts.STEEL_BLOCK:
+			var action = PreMoveTetrominoAction.new(block, normal * -1)
+			get_parent().append_new_action(action)
+		Consts.ROCK_BLOCK:
+			var action = PreMoveBlockAction.new(block, normal * -1)
+			get_parent().append_new_action(action)
+		_:	pass
+
+class PreMoveBlockAction:
+	var block
+	var direction
+
+	func _init(block, direction):
+		self.block = block
+		self.direction = direction
+
+	func execute():
+		print("block")
+		pass
+
+	func is_over():
+		return true
+
+class PreMoveTetrominoAction:
+	var tetromino
+	var direction
+
+	func _init(block, direction):
+		tetromino = block.get_parent()
+		self.direction = direction
+
+	func execute():
+		print("tetromino")
+		pass
+
+	func is_over():
+		return true
+
+class DestroyBlockAction:
+	var block
+	var over = false
+
+	func _init(block):
+		self.block = block
+
+	func execute():
+		block.queue_free()
+		over = true
+
+	func is_over():
+		return over
+

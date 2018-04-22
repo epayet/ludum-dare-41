@@ -108,13 +108,10 @@ func _on_Player_action_done():
 func _on_Bullet_action_done():
 	action_done()
 
-func _on_Bullet_hit_block(block, normal):
-	block.get_parent().action_on_block(block, normal)
 
 func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
-	for tetromino in $Tetrominos.get_children():
-		tetromino.move(speed)
+	$Tetrominos.move(speed)
 
 func set_state(new_state):
 	state = new_state
@@ -130,7 +127,6 @@ func _get_nearest_node(mouse_position):
 	var endPosition = (mouse_position - $Player.position).normalized() * 1000
 	endPosition += $Player.position
 	return space_state.intersect_ray($Player.position, endPosition, [$Player])
-
 
 func _on_Area2D_area_exited(area):
 	area.queue_free()
