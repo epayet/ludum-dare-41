@@ -1,7 +1,8 @@
 extends Node2D
 
-var SPEED = 800
+signal action_done
 
+var SPEED = 800
 var _direction = null
 
 # class member variables go here, for example:
@@ -30,15 +31,17 @@ func _process(delta):
 	pass
 		
 func _on_timer_timeout():
-	self.queue_free()
+	emit_signal("action_done")
+	queue_free()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('walls'):
 		var normal = area.get("normal_vector")
 		var reflect = _direction.reflect(normal)
 		var destination = (reflect * 1000) * -1  # because reasons
-		self.set_target_position(destination)
+		set_target_position(destination)
 	else:
 		# Bloc hit
-		self.queue_free()
+		emit_signal("action_done")
+		queue_free()
 		area.queue_free()

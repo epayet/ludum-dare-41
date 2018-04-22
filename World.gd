@@ -17,10 +17,10 @@ enum State {
 
 func _ready():
 	next_spawn = 0
+	randomize()
 	set_state(State.WAITING_PLAYER_ACTION)
 
 func _process(delta):
-	randomize()
 	$ShootingSight.points[0] = $Player.position
 	
 	update_state()
@@ -48,6 +48,7 @@ func add_bullet(mouse_position):
 	var target = _get_nearest_node(mouse_position)
 	if target:
 		var bullet = Bullet.instance()
+		bullet.connect("action_done", self, "_on_Bullet_action_done")
 		bullet.position = $Player.position
 		bullet.set_target_position(target.position)
 		set_state(State.MOVING_TETROMINOS)
@@ -69,6 +70,9 @@ func action_done():
 	emit_signal("add_score", 1)
 
 func _on_Player_action_done():
+	action_done()
+	
+func _on_Bullet_action_done():
 	action_done()
 	
 func move_tetrominos():
