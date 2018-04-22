@@ -1,5 +1,7 @@
 extends Node
 
+signal add_score(amount)
+
 var state = WAITING_PLAYER_ACTION
 var Bullet = load("res://Bullet/Bullet.tscn")
 export (PackedScene) var tetrominos
@@ -64,7 +66,7 @@ func action_done():
 	if next_spawn <= 0:
 		spawn_new_tetromino()
 	move_tetrominos()
-	$GUI.add_score(1)
+	emit_signal("add_score", 1)
 
 func _on_Player_action_done():
 	action_done()

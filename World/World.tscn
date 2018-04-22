@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://World/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://background.png" type="Texture" id=4]
+[ext_resource path="res://World/Wall.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D" index="0"]
 
@@ -33,6 +34,7 @@ round_precision = 8
 [node name="background" type="Sprite" parent="." index="3"]
 
 z_index = -1
+texture = ExtResource( 4 )
 centered = false
 _sections_unfolded = [ "Offset", "Z Index" ]
 
@@ -40,26 +42,25 @@ _sections_unfolded = [ "Offset", "Z Index" ]
 
 position = Vector2( 5, 0 )
 
-[node name="Top" parent="Walls" index="0" instance=ExtResource( 4 )]
+[node name="Top" parent="Walls" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 111.513, -94.5694 )
 rotation = 3.14159
 scale = Vector2( 8.51336, 2.95609 )
 
-[node name="Right" parent="Walls" index="1" instance=ExtResource( 4 )]
+[node name="Right" parent="Walls" index="1" instance=ExtResource( 5 )]
 
-position = Vector2( 437.555, 313.863 )
+position = Vector2( 448.512, 313.863 )
 rotation = 4.71239
-scale = Vector2( 12.8031, 4.52372 )
-_sections_unfolded = [ "Transform" ]
+scale = Vector2( 12.8031, 4.18133 )
 
-[node name="Bottom" parent="Walls" index="2" instance=ExtResource( 4 )]
+[node name="Bottom" parent="Walls" index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 140.554, 713.477 )
 rotation = 6.28318
 scale = Vector2( 8.49888, 3.56438 )
 
-[node name="Left" parent="Walls" index="3" instance=ExtResource( 4 )]
+[node name="Left" parent="Walls" index="3" instance=ExtResource( 5 )]
 
 position = Vector2( -163.733, 287.356 )
 rotation = 7.85398
