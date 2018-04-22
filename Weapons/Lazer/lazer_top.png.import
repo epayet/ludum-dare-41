@@ -7,10 +7,10 @@ path="res://.import/lazer_top.png-6942e0b3e0eb1266fe016dfa6f69fbd7.stex"
 [deps]
 
 source_file="res://Weapons/Lazer/lazer_top.png"
-source_md5="8ad854c8714ffc13045de46469b92119"
+source_md5="9f4561818b6c9feae5bc0ff64cbc1bf6"
 
 dest_files=[ "res://.import/lazer_top.png-6942e0b3e0eb1266fe016dfa6f69fbd7.stex" ]
-dest_md5="3ae22d147c3352f8ee79071ced9c10fe"
+dest_md5="f653fc74241e288fa6b5932f0065ba10"
 
 [params]
 
