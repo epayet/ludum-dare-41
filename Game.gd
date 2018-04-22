@@ -11,6 +11,7 @@ func _ready():
 	$World/Player.connect("lives_updated", self, "set_lives")
 	$World.connect("player_fires", self, "player_fires")
 	$World.connect("turn_finished", self, "turn_finished")
+	$World.connect("player_start_move", self, "player_start_move")
 	set_lives($World/Player.lives)
 
 func set_lives(count):
@@ -49,6 +50,9 @@ func activate_card(card):
 func player_fires():
 	if active_card:
 		active_card.player_fires()
+func player_start_move():
+	if active_card:
+		active_card.player_start_move()
 
 func turn_finished():
 	if active_card:

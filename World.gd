@@ -3,6 +3,7 @@ extends Node
 signal add_score(amount)
 signal player_fires
 signal turn_finished
+signal player_start_action
 
 var state = WAITING_PLAYER_ACTION
 var Bullet = load("res://Weapons/Bullet/Bullet.tscn")
@@ -115,6 +116,8 @@ func move_tetrominos():
 
 func set_state(new_state):
 	state = new_state
+	if state == State.PLAYER_IN_ACTION:
+		emit_signal("player_start_action")
 		
 func all_tetrominos_moved():
 	for tetromino in $Tetrominos.get_children():

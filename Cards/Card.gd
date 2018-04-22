@@ -6,8 +6,9 @@ const LAZER_CARD = 0
 const LIFE_UP_CARD = 1
 const BOX_SHOWER = 2
 const LIFE_DOWN_CARD = 3
+const LIMITED_ACTION_TIME = 4
 
-const CARD_TYPES = 4
+const CARD_TYPES = 5
 
 
 var card_type
@@ -30,14 +31,15 @@ func get_behaviour(type, world):
 		LIFE_UP_CARD: return LifeBehaviour.new(self, world, 1)
 		LIFE_DOWN_CARD: return LifeBehaviour.new(self, world, -1)
 		BOX_SHOWER: return LazerBehaviour.new(self, world)
+		LIMITED_ACTION_TIME: return LimitedActionTime.new(self, world)
 		_: print("No behaviour !")
 
 func activate(world):
 	behaviour = get_behaviour(card_type, world)
 	behaviour.activate()
 
-func player_moves():
-	behaviour.player_moves()
+func player_start_move():
+	behaviour.player_start_move()
 
 func player_fires():
 	behaviour.player_fires()
@@ -56,7 +58,7 @@ class LazerBehaviour:
 	func activate():
 		world.weapon = Consts.Weapon.LAZER
 
-	func player_moves():
+	func player_start_move():
 		pass
 
 	func player_fires():
@@ -80,7 +82,7 @@ class LifeBehaviour:
 	func activate():
 		pass
 		
-	func player_moves():
+	func player_start_move():
 		pass
 	func player_fires():
 		pass
@@ -90,3 +92,38 @@ class LifeBehaviour:
 			player.add_lives(amount)
 		parent.emit_signal("card_ended")
 		parent.queue_free()
+
+class LimitedActionTime:
+	var world
+	var parent
+	var used = false
+	var timer
+	var ttl
+
+	func _init(parent, world):
+		ttl = 10
+		self.parent = parent
+		self.world = world
+		timer = Timer.new()
+		timer.connect("timeout", self, "timeout")
+		parent.add_child(timer)
+
+	func activate():
+		pass
+
+	func player_start_move():
+		timer.stop()
+	
+	func timeout():
+		world.move_tetrominos()
+
+	func player_fires():
+		pass
+
+	func turn_finished():
+		timer.wait_time = 0.5
+		timer.start()
+		ttl -= 1
+		if ttl == 0:
+			parent.emit_signal("card_ended")
+			parent.queue_free()
