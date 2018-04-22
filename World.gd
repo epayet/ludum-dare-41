@@ -50,7 +50,7 @@ func spawn_new_tetromino():
 
 func random_tetromino_at(grid_position):
 	var tetrominos = preload("res://Tetromino/Tetromino.tscn").instance()
-	tetrominos.init(grid_position, tetrominos.get_random_shape(), $Player)
+	tetrominos.init(grid_position, tetrominos.get_random_shape())
 	return tetrominos
 
 func add_bullet(mouse_position):

@@ -35,15 +35,14 @@ func compute_shape_dimensions(shape):
 		dim.y = max(dim.y, block.y)
 	return dim
 
-func init(grid_position, shape, player):
-	self.player = player
+func init(grid_position, shape):
 	var block_scn = preload("res://Tetromino/Block.tscn")
 	var dim = compute_shape_dimensions(shape)
 	grid_position.x = min(grid_position.x, Consts.GRID_WIDTH - dim.x - 1)
 	
 	for pos in shape:
 		var block = block_scn.instance()
-		block.init(player, grid_position + pos)
+		block.init(grid_position + pos)
 		add_child(block)
 	
 func move(duration):

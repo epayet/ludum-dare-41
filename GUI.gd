@@ -13,3 +13,6 @@ func _ready():
 func add_score(to_add):
 	score += to_add
 	$ScoreValue.text = str(score)
+
+func set_lives(lives):
+	$LivesValue.text = str(lives)

@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-var player
 var next_move
 var is_moving = false
 
@@ -11,15 +10,14 @@ var OFFSET = Vector2(Consts.GRID_CELL_SIZE/2, Consts.GRID_CELL_SIZE/2)
 
 func _ready():
 	$Tween.connect("tween_completed", self, "move_done")
+	$Area2D.connect("body_entered", self, "body_entered_in_area")
 
 
-func init(player, grid_position, speed = 1):
-	self.player = player
+func init(grid_position, speed = 1):
 	self.grid_position = grid_position
 	position = grid_position * Consts.GRID_CELL_SIZE + OFFSET
 	self.speed = speed
 	
-	connect("area_entered", self, "object_entered_area")
 	reset_move()
 
 func reset_move():
@@ -40,7 +38,8 @@ func move_done(object, key):
 
 func hit_by_bullet (bullet, normal):
 	get_parent().update_moves(bullet, self, normal)
-
-func object_entered_area(other_area):
-	if other_area == player:
-		print("player dead")
+	
+func body_entered_in_area(object):
+	if object.is_in_group("player"):
+		object.rem_lives(1)
+		get_parent().queue_free()

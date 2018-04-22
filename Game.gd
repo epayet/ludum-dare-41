@@ -5,17 +5,11 @@ extends Node
 # var b = "textvar"
 
 func _ready():
-	$GUI.show()
+	$World/Player.connect("lives_updated", self, "set_lives")
+	set_lives($World/Player.lives)
+
+func set_lives(count):
+	$GUI.set_lives(count)
 	
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-
 func _on_World_add_score(amount):
 	$GUI.add_score(amount)
