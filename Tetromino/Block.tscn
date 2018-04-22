@@ -8,17 +8,14 @@
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="Block" type="Area2D"]
+[node name="Block" type="KinematicBody2D" index="0" groups=[
+"blocks",
+]]
 
 input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 2
 collision_mask = 7
-audio_bus_override = false
-audio_bus_name = "Master"
+collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index" ]
 speed = 1
@@ -32,7 +29,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="Tween" type="Tween" parent="." index="2"]
 

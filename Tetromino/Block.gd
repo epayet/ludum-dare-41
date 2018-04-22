@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 var player
 var next_move
@@ -31,13 +31,15 @@ func move(duration):
 	$Tween.interpolate_property(self, "position", position, grid_position * Consts.GRID_CELL_SIZE + OFFSET, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
-
 func move_done(object, key):
 	is_moving = false
 	reset_move()
 	
 	if position.y > get_viewport().size.y + Consts.GRID_CELL_SIZE:
 		queue_free()
+
+func hit_by_bullet (bullet, normal):
+	get_parent().update_moves(bullet, self, normal)
 
 func object_entered_area(other_area):
 	if other_area == player:

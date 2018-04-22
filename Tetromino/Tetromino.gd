@@ -56,3 +56,6 @@ func has_children_moving():
 		if block.is_moving:
 			return true
 	return false
+
+func update_moves (bullet, block, normal):
+	pass

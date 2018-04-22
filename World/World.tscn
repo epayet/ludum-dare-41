@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://background.png" type="Texture" id=4]
-[ext_resource path="res://World/Wall.tscn" type="PackedScene" id=5]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -41,33 +40,23 @@ texture = ExtResource( 4 )
 centered = false
 _sections_unfolded = [ "Offset", "Z Index" ]
 
-[node name="Walls" type="Node2D" parent="." index="4"]
+[node name="Walls" type="Node" parent="." index="4"]
 
-position = Vector2( 5, 0 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls" index="0"]
 
-[node name="Top" parent="Walls" index="0" instance=ExtResource( 5 )]
+input_pickable = false
+collision_layer = 8
+collision_mask = 4
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 1.0
+_sections_unfolded = [ "Collision" ]
 
-position = Vector2( 111.513, -94.5694 )
-rotation = 3.14159
-scale = Vector2( 8.51336, 2.95609 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D" index="0"]
 
-[node name="Right" parent="Walls" index="1" instance=ExtResource( 5 )]
-
-position = Vector2( 448.512, 313.863 )
-rotation = 4.71239
-scale = Vector2( 12.8031, 4.18133 )
-
-[node name="Bottom" parent="Walls" index="2" instance=ExtResource( 5 )]
-
-position = Vector2( 140.554, 753.561 )
-rotation = 6.28318
-scale = Vector2( 8.49888, 3.56438 )
-
-[node name="Left" parent="Walls" index="3" instance=ExtResource( 5 )]
-
-position = Vector2( -163.733, 287.356 )
-rotation = 7.85398
-scale = Vector2( 11.8779, 5.02044 )
+build_mode = 0
+polygon = PoolVector2Array( -160, -160, 480, -160, 480, 768, -160, 768, -160, -160, -64, -128, 0, 0, 0, 640, 320, 640, 320, 0, 0, 0 )
 
 [connection signal="action_done" from="Player" to="." method="_on_Player_action_done"]
 
