@@ -1,4 +1,4 @@
-extends CollisionShape2D
+extends Area2D
 
 export (Vector2) var normal_vector
 
@@ -7,8 +7,8 @@ export (Vector2) var normal_vector
 # var b = "textvar"
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+	normal_vector = Vector2(0, -1).rotated(rotation).normalized()
+	print(normal_vector, get_node(".").get_name())
 	pass
 
 #func _process(delta):
