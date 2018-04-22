@@ -12,7 +12,8 @@ export (int) var speed = 0.5
 
 enum State {
 	WAITING_PLAYER_ACTION,
-	MOVING_TETROMINOS
+	MOVING_TETROMINOS,
+	PLAYER_IN_ACTION
 }
 
 func _ready():
@@ -21,10 +22,22 @@ func _ready():
 	set_state(State.WAITING_PLAYER_ACTION)
 
 func _process(delta):
-	$ShootingSight.points[0] = $Player.position
-	
+	$ShootingSight.points[0] = $Player.position	
 	update_state()
 	update_sight_shooting()
+	match state:
+		State.WAITING_PLAYER_ACTION:
+			if Input.is_action_pressed("ui_left"):
+				if $Player.move_to(Consts.LEFT):
+					set_state(State.PLAYER_IN_ACTION)
+			if Input.is_action_pressed("ui_right"):
+				if $Player.move_to(Consts.RIGHT):
+					set_state(State.PLAYER_IN_ACTION)
+			elif Input.is_mouse_button_pressed(BUTTON_LEFT):
+				add_bullet(get_viewport().get_mouse_position())
+				set_state(State.PLAYER_IN_ACTION)
+		_:
+			pass
 
 func update_state():
 	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
@@ -40,10 +53,6 @@ func random_tetromino_at(grid_position):
 	tetrominos.init(grid_position, tetrominos.get_random_shape(), $Player)
 	return tetrominos
 
-func _input(event):
-   if event is InputEventMouseButton and not event.pressed and state == State.WAITING_PLAYER_ACTION:
-	   add_bullet(event.position)
-		
 func add_bullet(mouse_position):
 	var target = _get_nearest_node(mouse_position)
 	if target:
@@ -53,7 +62,6 @@ func add_bullet(mouse_position):
 		bullet.set_target_position(target.position)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
-		action_done()
 
 func update_sight_shooting():
 	var target = get_viewport().get_mouse_position()
@@ -81,7 +89,6 @@ func move_tetrominos():
 		tetromino.move(speed)
 
 func set_state(new_state):
-	$Player.can_do_action = new_state == State.WAITING_PLAYER_ACTION
 	state = new_state
 		
 func all_tetrominos_moved():

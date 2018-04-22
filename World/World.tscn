@@ -6,7 +6,7 @@
 [ext_resource path="res://background.png" type="Texture" id=4]
 [ext_resource path="res://World/Wall.tscn" type="PackedScene" id=5]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -40,7 +40,6 @@ _sections_unfolded = [ "Offset", "Z Index" ]
 
 [node name="Walls" type="Node2D" parent="." index="4"]
 
-editor/display_folded = true
 position = Vector2( 5, 0 )
 
 [node name="Top" parent="Walls" index="0" instance=ExtResource( 5 )]
@@ -57,7 +56,7 @@ scale = Vector2( 12.8031, 4.18133 )
 
 [node name="Bottom" parent="Walls" index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 140.554, 713.477 )
+position = Vector2( 140.554, 753.561 )
 rotation = 6.28318
 scale = Vector2( 8.49888, 3.56438 )
 
