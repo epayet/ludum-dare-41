@@ -43,8 +43,7 @@ func move(duration):
 func move_done(object, key):
 	is_moving = false
 	reset_move()
-	
-	if position.y > get_viewport().size.y + Consts.GRID_CELL_SIZE:
+	if grid_position.y >= Consts.GRID_HEIGHT:
 		queue_free()
 
 func hit_by_bullet (bullet, normal):

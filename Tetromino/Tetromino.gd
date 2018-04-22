@@ -28,6 +28,9 @@ func _process(delta):
 func get_random_shape():
 	return SHAPES[randi() % SHAPES.size()]
 
+func get_blocks():
+	return get_children()
+
 func compute_shape_dimensions(shape):
 	var dim = Vector2(0, 0)
 	for block in shape:
@@ -57,16 +60,17 @@ func has_children_moving():
 	return false
 
 func block_has_been_hit (bullet, block, normal):
+	var action = null
 	match block.block_type:
 		Consts.WOOD_BLOCK:
-			get_parent().append_new_action(DestroyBlockAction.new(block))
+			action = DestroyBlockAction.new(block)
 		Consts.STEEL_BLOCK:
-			var action = PreMoveTetrominoAction.new(block, normal * -1)
-			get_parent().append_new_action(action)
+			action = PreMoveTetrominoAction.new(block, normal * -1)
 		Consts.ROCK_BLOCK:
-			var action = PreMoveBlockAction.new(block, normal * -1)
-			get_parent().append_new_action(action)
+			action = PreMoveBlockAction.new(block, normal * -1)
 		_:	pass
+	if action:
+		get_parent().append_new_action(action)
 
 class PreMoveBlockAction:
 	var block
@@ -76,23 +80,35 @@ class PreMoveBlockAction:
 		self.block = block
 		self.direction = direction
 
-	func execute():
-		print("block")
-		pass
+	func execute(grid, speed):
+		var new_grid_position = block.grid_position + direction
+		if grid.can_move_block_from_to(block, new_grid_position):
+			grid.move_block_from_to(block, new_grid_position, speed)
 
 	func is_over():
-		return true
+		return not block.is_moving
 
 class PreMoveTetrominoAction:
 	var tetromino
 	var direction
 
 	func _init(block, direction):
-		tetromino = block.get_parent()
+		self.tetromino = block.get_parent()
 		self.direction = direction
 
-	func execute():
-		print("tetromino")
+	func can_move_tetromino(grid):
+		for block in tetromino.get_blocks():
+			if not grid.can_move_block_from_to(block, block.grid_position + direction, true):
+				return false
+		return true
+
+	func move_tetromino(grid, speed):
+		for block in tetromino.get_blocks():
+			grid.move_block_from_to(block, block.grid_position + direction, speed)
+
+	func execute(grid, speed):
+		if can_move_tetromino(grid):
+			move_tetromino(grid, speed)
 		pass
 
 	func is_over():
@@ -105,7 +121,7 @@ class DestroyBlockAction:
 	func _init(block):
 		self.block = block
 
-	func execute():
+	func execute(grid, speed):
 		block.queue_free()
 		over = true
 
