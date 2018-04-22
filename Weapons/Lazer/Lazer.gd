@@ -10,7 +10,7 @@ var current_hit
 const SPEED = 4000
 
 func _ready():
-	$Tween.connect("tween_completed", self, "lazer_target_reached")
+	$Tween.connect("tween_completed", self, "lazer_step_complete")
 
 func _process(delta):
 	$Body.region_rect = Rect2(0, 0, 8, cur_length)
@@ -35,9 +35,8 @@ func _physics_process(delta):
 		else:
 			emit_signal("action_done")
 			queue_free()
-		
 
-func lazer_target_reached(object, key):
+func lazer_step_complete(object, key):
 	if target != null and target.is_in_group("blocks"):
 		current_hit.play()
 		target.queue_free()

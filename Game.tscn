@@ -4,7 +4,7 @@
 [ext_resource path="res://World/World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -14,6 +14,10 @@ script = ExtResource( 1 )
 
 margin_left = 326.0
 margin_right = 326.0
+
+[node name="Cards" type="Node2D" parent="." index="2"]
+
+position = Vector2( 492.9, 348.196 )
 
 [connection signal="add_score" from="World" to="." method="_on_World_add_score"]
 
