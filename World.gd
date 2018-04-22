@@ -1,15 +1,18 @@
 extends Node
 
 signal add_score(amount)
+signal player_fires
+signal turn_finished
 
 var state = WAITING_PLAYER_ACTION
-var Bullet = load("res://Bullet/Bullet.tscn")
+var Bullet = load("res://Weapons/Bullet/Bullet.tscn")
 var Lazer = preload("res://Weapons/Lazer/Lazer.tscn")
 export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
 export (int) var speed = 0.1
+var weapon = Consts.Weapon.DEFAULT
 
 enum State {
 	WAITING_PLAYER_ACTION,
@@ -35,7 +38,7 @@ func _process(delta):
 				if $Player.move_to(Consts.RIGHT):
 					set_state(State.PLAYER_IN_ACTION)
 			elif Input.is_mouse_button_pressed(BUTTON_LEFT):
-				add_lazer(get_viewport().get_mouse_position())
+				fire(get_viewport().get_mouse_position())
 				set_state(State.PLAYER_IN_ACTION)
 		_:
 			pass
@@ -43,6 +46,7 @@ func _process(delta):
 func update_state():
 	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
 		set_state(State.WAITING_PLAYER_ACTION)
+		emit_signal("turn_finished")
 
 func spawn_new_tetromino():
 	next_spawn = spawn_rate
@@ -54,6 +58,11 @@ func random_tetromino_at(grid_position):
 	tetrominos.init(grid_position, tetrominos.get_random_shape())
 	return tetrominos
 
+func fire(mouse_position):
+	match weapon:
+		Consts.Weapon.DEFAULT: add_bullet(mouse_position)
+		Consts.Weapon.LAZER: add_lazer(mouse_position)
+	
 func add_bullet(mouse_position):
 	var target = _get_nearest_node(mouse_position)
 	if target:
@@ -64,6 +73,7 @@ func add_bullet(mouse_position):
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
+		emit_signal("player_fires")
 
 func add_lazer(mouse_position):
 	var target = _get_nearest_node(mouse_position)
@@ -75,6 +85,7 @@ func add_lazer(mouse_position):
 		lazer.rotation = rotation
 		set_state(State.MOVING_TETROMINOS)
 		add_child(lazer)
+		emit_signal("player_fires")
 	
 
 func update_sight_shooting():

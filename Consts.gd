@@ -14,3 +14,8 @@ const ROCK_BLOCK = 0
 const WOOD_BLOCK = 1
 const STEEL_BLOCK = 2
 const OBSIDIAN_BLOCK = 3
+
+enum Weapon {
+	LAZER,
+	DEFAULT
+}
