@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bing.wav-7b188932308355de63302943febe3a4c.sample"
+
+[deps]
+
+source_file="res://Sounds/bing.wav"
+source_md5="c3590781fe918879947e4019e1c54593"
+
+dest_files=[ "res://.import/bing.wav-7b188932308355de63302943febe3a4c.sample" ]
+dest_md5="5757c2e2ce93f3fa48042ad735025450"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

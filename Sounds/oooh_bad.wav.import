@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/oooh_bad.wav-73769b42cf82f99d9475c3614f1c9fd5.sample"
+
+[deps]
+
+source_file="res://Sounds/oooh_bad.wav"
+source_md5="3532b92f77491d004e406e07272db1ea"
+
+dest_files=[ "res://.import/oooh_bad.wav-73769b42cf82f99d9475c3614f1c9fd5.sample" ]
+dest_md5="a28e45d41388a756fb6d3dde1f922a75"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

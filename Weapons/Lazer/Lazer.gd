@@ -7,10 +7,11 @@ var cur_length = 0
 var next_length = null
 var current_hit
 
-const SPEED = 4000
+const SPEED = 1000
 
 func _ready():
 	$Tween.connect("tween_completed", self, "lazer_step_complete")
+	$AudioStreamPlayer.play()
 
 func _process(delta):
 	$Body.region_rect = Rect2(0, 0, 8, cur_length)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/destruction1.wav-168d9b1e11034de9c65ee16700e1b634.sample"
+
+[deps]
+
+source_file="res://Sounds/destruction1.wav"
+source_md5="8be772bcf444b2f86b4030b82bc6b1de"
+
+dest_files=[ "res://.import/destruction1.wav-168d9b1e11034de9c65ee16700e1b634.sample" ]
+dest_md5="ed44640b45d5e045372230bd31f15425"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
