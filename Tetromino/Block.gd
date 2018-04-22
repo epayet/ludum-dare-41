@@ -43,12 +43,11 @@ func move(duration):
 func move_done(object, key):
 	is_moving = false
 	reset_move()
-	
-	if position.y > get_viewport().size.y + Consts.GRID_CELL_SIZE:
+	if grid_position.y >= Consts.GRID_HEIGHT:
 		queue_free()
 
 func hit_by_bullet (bullet, normal):
-	get_parent().update_moves(bullet, self, normal)
+	get_parent().block_has_been_hit(bullet, self, normal)
 	
 func body_entered_in_area(object):
 	if object.is_in_group("player"):

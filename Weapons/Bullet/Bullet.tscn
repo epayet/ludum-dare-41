@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 5.52866
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" index="0"]
 
 position = Vector2( 1.19209e-07, -1.19209e-07 )
 input_pickable = false
@@ -20,7 +20,7 @@ friction = 0.0
 bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
-continuous_cd = 0
+continuous_cd = 2
 contacts_reported = 0
 contact_monitor = false
 sleeping = false

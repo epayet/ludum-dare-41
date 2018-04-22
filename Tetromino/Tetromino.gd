@@ -27,7 +27,10 @@ func _process(delta):
 
 func get_random_shape():
 	return SHAPES[randi() % SHAPES.size()]
-	
+
+func get_blocks():
+	return get_children()
+
 func compute_shape_dimensions(shape):
 	var dim = Vector2(0, 0)
 	for block in shape:
@@ -39,12 +42,12 @@ func init(grid_position, shape):
 	var block_scn = preload("res://Tetromino/Block.tscn")
 	var dim = compute_shape_dimensions(shape)
 	grid_position.x = min(grid_position.x, Consts.GRID_WIDTH - dim.x - 1)
-	
+
 	for pos in shape:
 		var block = block_scn.instance()
 		block.init(grid_position + pos, Consts.ROCK_BLOCK)
 		add_child(block)
-	
+
 func move(duration):
 	for block in get_children():
 		block.move(duration)
@@ -56,5 +59,72 @@ func has_children_moving():
 			return true
 	return false
 
-func update_moves (bullet, block, normal):
-	pass
+func block_has_been_hit (bullet, block, normal):
+	var action = null
+	match block.block_type:
+		Consts.WOOD_BLOCK:
+			action = DestroyBlockAction.new(block)
+		Consts.STEEL_BLOCK:
+			action = PreMoveTetrominoAction.new(block, normal * -1)
+		Consts.ROCK_BLOCK:
+			action = PreMoveBlockAction.new(block, normal * -1)
+		_:	pass
+	if action:
+		get_parent().append_new_action(action)
+
+class PreMoveBlockAction:
+	var block
+	var direction
+
+	func _init(block, direction):
+		self.block = block
+		self.direction = direction
+
+	func execute(grid, speed):
+		var new_grid_position = block.grid_position + direction
+		if grid.can_move_block_from_to(block, new_grid_position):
+			grid.move_block_from_to(block, new_grid_position, speed)
+
+	func is_over():
+		return not block.is_moving
+
+class PreMoveTetrominoAction:
+	var tetromino
+	var direction
+
+	func _init(block, direction):
+		self.tetromino = block.get_parent()
+		self.direction = direction
+
+	func can_move_tetromino(grid):
+		for block in tetromino.get_blocks():
+			if not grid.can_move_block_from_to(block, block.grid_position + direction, true):
+				return false
+		return true
+
+	func move_tetromino(grid, speed):
+		for block in tetromino.get_blocks():
+			grid.move_block_from_to(block, block.grid_position + direction, speed)
+
+	func execute(grid, speed):
+		if can_move_tetromino(grid):
+			move_tetromino(grid, speed)
+		pass
+
+	func is_over():
+		return true
+
+class DestroyBlockAction:
+	var block
+	var over = false
+
+	func _init(block):
+		self.block = block
+
+	func execute(grid, speed):
+		block.queue_free()
+		over = true
+
+	func is_over():
+		return over
+
