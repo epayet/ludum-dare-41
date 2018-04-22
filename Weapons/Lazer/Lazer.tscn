@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Weapons/Lazer/Lazer.gd" type="Script" id=1]
 [ext_resource path="res://Weapons/Lazer/lazer_body.png" type="Texture" id=2]
+[ext_resource path="res://Weapons/Lazer/lazer_bottom.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "Energy blast"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [node name="Lazer" type="Node2D" index="0"]
 
@@ -9,12 +29,13 @@ script = ExtResource( 1 )
 
 [node name="Body" type="Sprite" parent="." index="0"]
 
+position = Vector2( 2, 0 )
 rotation = 3.14159
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -4, 0 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 8, 15 )
+region_rect = Rect2( 0, 0, 12, 15 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="RayCast" type="RayCast2D" parent="." index="1"]
@@ -34,5 +55,23 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
+
+[node name="Energy_blast" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, -23 )
+texture = ExtResource( 3 )
+hframes = 4
+frame = 3
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Energy_blast" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+"anims/Energy blast" = SubResource( 1 )
+blend_times = [  ]
 
 
