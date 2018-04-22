@@ -1,15 +1,10 @@
 extends RigidBody2D
 
 signal action_done
-signal hit_block(block)
 
 var SPEED = 800
 var _direction = null
 var ttl = 5
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 
 func _ready():
 	var ttl = 5
@@ -18,15 +13,7 @@ func _ready():
 	add_child(timer) #to _process
 	timer.set_wait_time(5)
 	timer.start() #to start
-	contact_monitor = true
 	contacts_reported = 1
-	
-func set_target_position(target_position):
-	pass
-#	_direction = (target_position - position).normalized()
-#	var time_to_target = self.position.distance_to(target_position) / SPEED
-#	$Tween.interpolate_property(self, "position", self.position, target_position, time_to_target, Tween.TRANS_LINEAR, Tween.EASE_IN)
-#	$Tween.start()
 
 func _process(delta):
 	pass
@@ -35,26 +22,13 @@ func _on_timer_timeout():
 	emit_signal("action_done")
 	queue_free()
 
-func _on_Area2D_area_entered(area):
-	print(area.get_name())
-	if area.is_in_group('walls'):
-		var normal = area.get("normal_vector")
-		var reflect = _direction.reflect(normal)
-		var destination = (reflect * 1000) * -1  # because reasons
-		set_target_position(destination)
+func _integrate_forces(state):
+	if state.get_contact_count():
+		var body = state.get_contact_collider_object(0)
+		if body.is_in_group("blocks"):
+			body.hit_by_bullet(self, state.get_contact_local_normal(0))
 		ttl -= 1
 		if ttl == 0:
 			emit_signal("action_done")
 			queue_free()
-	else:
-		# Bloc hit
-		emit_signal("action_done")
-		emit_signal("hit_block", area)
-		queue_free()
 
-
-func _on_Bullet_body_entered(body):
-	ttl -= 1
-	if ttl == 0:
-		emit_signal("action_done")
-		queue_free()
