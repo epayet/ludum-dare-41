@@ -44,7 +44,11 @@ func init(grid_position, shape):
 		var block = block_scn.instance()
 		block.init(grid_position + pos, Consts.ROCK_BLOCK)
 		add_child(block)
-	
+
+func execute_action (action):
+	print("execute_action")
+	pass
+
 func move(duration):
 	for block in get_children():
 		block.move(duration)
@@ -56,5 +60,9 @@ func has_children_moving():
 			return true
 	return false
 
-func update_moves (bullet, block, normal):
-	pass
+func block_has_been_hit (bullet, block, normal):
+	var action = {
+		'block': block,
+		'direction': normal * -1
+	}
+	get_parent().append_new_action(action)
