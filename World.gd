@@ -4,7 +4,7 @@ signal add_score(amount)
 
 var state = WAITING_PLAYER_ACTION
 var Bullet = load("res://Bullet/Bullet.tscn")
-var Lazer = preload("res://Weapons/Lazer.tscn")
+var Lazer = preload("res://Weapons/Lazer/Lazer.tscn")
 export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0

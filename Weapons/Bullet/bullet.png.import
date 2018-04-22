@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lazer_body.png-760aef28e1004e073bb20f0933305320.stex"
+path="res://.import/bullet.png-b603ece20350b94254a608a5fa5ddfbe.stex"
 
 [deps]
 
-source_file="res://Weapons/lazer_body.png"
-source_md5="d44df2438d8485284529fb7f39cb2684"
+source_file="res://Weapons/Bullet/bullet.png"
+source_md5="3caea3477ccf10eeae866cc87be88796"
 
-dest_files=[ "res://.import/lazer_body.png-760aef28e1004e073bb20f0933305320.stex" ]
-dest_md5="7f18cf58142397b9c3eb1dc883fa0cb5"
+dest_files=[ "res://.import/bullet.png-b603ece20350b94254a608a5fa5ddfbe.stex" ]
+dest_md5="75ce29cb6543c10f0e47c49b7acd2f3e"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bullet.png-ff1424653e10246c11e3724e402c519e.stex"
+path="res://.import/lazer_body.png-478a41fd8b24abd72839017d43858558.stex"
 
 [deps]
 
-source_file="res://bullet.png"
-source_md5="3caea3477ccf10eeae866cc87be88796"
+source_file="res://Weapons/Lazer/lazer_body.png"
+source_md5="d44df2438d8485284529fb7f39cb2684"
 
-dest_files=[ "res://.import/bullet.png-ff1424653e10246c11e3724e402c519e.stex" ]
-dest_md5="0f4d6d5bf8a16ff5c8c12e2a899fa7f2"
+dest_files=[ "res://.import/lazer_body.png-478a41fd8b24abd72839017d43858558.stex" ]
+dest_md5="7f18cf58142397b9c3eb1dc883fa0cb5"
 
 [params]
 
