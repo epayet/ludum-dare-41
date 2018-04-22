@@ -8,7 +8,7 @@ export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
-export (int) var speed = 0.5
+export (int) var speed = 0.1
 
 enum State {
 	WAITING_PLAYER_ACTION,
