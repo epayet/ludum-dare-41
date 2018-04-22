@@ -58,6 +58,7 @@ func add_bullet(mouse_position):
 	if target:
 		var bullet = Bullet.instance()
 		bullet.connect("action_done", self, "_on_Bullet_action_done")
+		bullet.connect("hit_block", self, "_on_Bullet_hit_block")
 		bullet.position = $Player.position
 		bullet.set_target_position(target.position)
 		set_state(State.MOVING_TETROMINOS)
@@ -82,7 +83,10 @@ func _on_Player_action_done():
 	
 func _on_Bullet_action_done():
 	action_done()
-	
+
+func _on_Bullet_hit_block(block):
+	block.queue_free()
+
 func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
 	for tetromino in $Tetrominos.get_children():
