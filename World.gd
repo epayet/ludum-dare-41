@@ -4,6 +4,7 @@ signal add_score(amount)
 
 var state = WAITING_PLAYER_ACTION
 var Bullet = load("res://Bullet/Bullet.tscn")
+var Lazer = preload("res://Weapons/Lazer.tscn")
 export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
@@ -34,7 +35,7 @@ func _process(delta):
 				if $Player.move_to(Consts.RIGHT):
 					set_state(State.PLAYER_IN_ACTION)
 			elif Input.is_mouse_button_pressed(BUTTON_LEFT):
-				add_bullet(get_viewport().get_mouse_position())
+				add_lazer(get_viewport().get_mouse_position())
 				set_state(State.PLAYER_IN_ACTION)
 		_:
 			pass
@@ -63,6 +64,18 @@ func add_bullet(mouse_position):
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
+
+func add_lazer(mouse_position):
+	var target = _get_nearest_node(mouse_position)
+	if target:
+		var lazer = Lazer.instance()
+		lazer.position = $Player.position
+		lazer.connect("action_done", self, "action_done")
+		var rotation = -($Player.position - mouse_position).angle_to(Vector2(0, 1))
+		lazer.rotation = rotation
+		set_state(State.MOVING_TETROMINOS)
+		add_child(lazer)
+	
 
 func update_sight_shooting():
 	var target = get_viewport().get_mouse_position()
