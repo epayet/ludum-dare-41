@@ -24,6 +24,7 @@ func _process(delta):
 	$ShootingSight.points[0] = $Player.position
 	
 	update_state()
+	update_sight_shooting()
 
 func update_state():
 	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
@@ -42,8 +43,6 @@ func random_tetromino_at(grid_position):
 func _input(event):
    if event is InputEventMouseButton and not event.pressed and state == State.WAITING_PLAYER_ACTION:
 	   add_bullet(event.position)
-   elif event is InputEventMouseMotion: 
-	   update_sight_shooting(event.position)
 		
 func add_bullet(mouse_position):
 	var target = _get_nearest_node(mouse_position)
@@ -55,7 +54,8 @@ func add_bullet(mouse_position):
 		add_child(bullet)
 		action_done()
 
-func update_sight_shooting(target):
+func update_sight_shooting():
+	var target = get_viewport().get_mouse_position()
 	var playerPosition = $Player.position
 	var endPosition = (target - playerPosition).normalized() * 1000
 	endPosition += playerPosition
