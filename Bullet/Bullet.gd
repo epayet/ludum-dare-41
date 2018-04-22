@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 signal action_done
 signal hit_block(block)
@@ -18,6 +18,8 @@ func _ready():
 	add_child(timer) #to _process
 	timer.set_wait_time(5)
 	timer.start() #to start
+	contact_monitor = true
+	contacts_reported = 1
 	
 func set_target_position(target_position):
 	pass
@@ -48,4 +50,11 @@ func _on_Area2D_area_entered(area):
 		# Bloc hit
 		emit_signal("action_done")
 		emit_signal("hit_block", area)
+		queue_free()
+
+
+func _on_Bullet_body_entered(body):
+	ttl -= 1
+	if ttl == 0:
+		emit_signal("action_done")
 		queue_free()
