@@ -1,9 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Pixel_gothic.tres" type="DynamicFont" id=2]
 
-[node name="GUI" type="Control"]
+[sub_resource type="Animation" id=1]
+
+resource_name = "score"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScoreValueUpdate:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Plus:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 2, 2 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[node name="GUI" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -113,5 +144,72 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "custom_fonts" ]
+
+[node name="ScoreModificationArea" type="Node2D" parent="." index="4"]
+
+position = Vector2( 298.355, 10.0499 )
+
+[node name="PlusOne" type="Node2D" parent="ScoreModificationArea" index="0"]
+
+visible = false
+
+[node name="Plus" type="Label" parent="ScoreModificationArea/PlusOne" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -27.3551
+margin_top = 9.95015
+margin_right = 20.6449
+margin_bottom = 33.9501
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.298039, 0.682353, 0.0823529, 1 )
+text = "+"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Focus", "Hint", "Margin", "Material", "Mouse", "Pause", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="ScoreValueUpdate" type="Label" parent="ScoreModificationArea/PlusOne" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -16.3551
+margin_top = 7.95015
+margin_right = 23.6449
+margin_bottom = 38.9501
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.298642, 0.683594, 0.0826928, 1 )
+text = "+1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="PlusOneAnimation" type="AnimationPlayer" parent="ScoreModificationArea/PlusOne" index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 3.0
+anims/score = SubResource( 1 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 
