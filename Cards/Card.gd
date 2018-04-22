@@ -115,7 +115,7 @@ class LimitedActionTime:
 		timer.stop()
 	
 	func timeout():
-		world.move_tetrominos()
+		world.action_done()
 
 	func player_fires():
 		pass

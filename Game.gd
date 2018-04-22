@@ -60,4 +60,4 @@ func turn_finished():
 	card_cooldown -= 1
 	if card_cooldown == 0:
 		add_random_card()
-		card_cooldown = card_cooldown_original
+		card_cooldown = randi() % card_cooldown_original + 2
