@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-5aeacab20f3c6b560a5f4d662d413d08.stex"
+path="res://.import/knight_big.png-11bb54ee920ec0c97a895abacd5ddf6b.stex"
 
 [deps]
 
-source_file="res://Menu_Test2/icon.png"
-source_md5="ae7e641067601e2184afcade49abd283"
+source_file="res://Menu_Test2/knight_big.png"
+source_md5="8dc7c2f8ca124f7b0c09ed815d443fce"
 
-dest_files=[ "res://.import/icon.png-5aeacab20f3c6b560a5f4d662d413d08.stex" ]
-dest_md5="84511021bbc8c9d37c7f0f4d181de883"
+dest_files=[ "res://.import/knight_big.png-11bb54ee920ec0c97a895abacd5ddf6b.stex" ]
+dest_md5="1f39d3b8cdc3382114bc3a1861c92bf3"
 
 [params]
 
