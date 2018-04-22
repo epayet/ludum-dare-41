@@ -20,7 +20,8 @@ Consts="*res://Consts.gd"
 
 [display]
 
-window/size/width=600
+window/size/width=640
+window/size/height=640
 
 [layer_names]
 

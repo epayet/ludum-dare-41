@@ -11,7 +11,14 @@ var _direction = null
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	pass
+	var timer = Timer.new()
+	timer.connect("timeout",self,"_on_timer_timeout") 
+	#timeout is what says in docs, in signals
+	#self is who respond to the callback
+	#_on_timer_timeout is the callback, can have any name
+	add_child(timer) #to _process
+	timer.set_wait_time(1)
+	timer.start() #to start
 	
 func set_target_position(target_position):
 	_direction = (target_position - self.position).normalized()
@@ -19,16 +26,19 @@ func set_target_position(target_position):
 	$Tween.interpolate_property(self, "position", self.position, target_position, time_to_target, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
+func _process(delta):
+	pass
+		
+func _on_timer_timeout():
+	self.queue_free()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('walls'):
-		var normal = area.get_node("CollisionShape2D").get("normal_vector")
+		var normal = area.get("normal_vector")
 		var reflect = _direction.reflect(normal)
-		var destination = (reflect * 1000)
-		print(destination, 'desctioansotisa')
+		var destination = (reflect * 1000) * -1  # because reasons
 		self.set_target_position(destination)
+	else:
+		# Bloc hit
+		self.queue_free()
+		area.queue_free()
