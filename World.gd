@@ -60,7 +60,8 @@ func add_bullet(mouse_position):
 		bullet.connect("action_done", self, "_on_Bullet_action_done")
 		bullet.connect("hit_block", self, "_on_Bullet_hit_block")
 		bullet.position = $Player.position
-		bullet.set_target_position(target.position)
+		var direction = (mouse_position - $Player.position).normalized()
+		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
 
