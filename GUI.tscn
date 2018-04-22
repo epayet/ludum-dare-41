@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
-[ext_resource path="res://DefaultFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://GUI/Pixel_gothic.tres" type="DynamicFont" id=2]
 
 [node name="GUI" type="Control"]
 
@@ -26,10 +26,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 101.0
-margin_bottom = 48.0
+margin_left = 80.0
+margin_top = 30.0
+margin_right = 171.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -49,10 +49,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
+margin_left = 80.0
 margin_top = 70.0
-margin_right = 101.0
-margin_bottom = 108.0
+margin_right = 194.0
+margin_bottom = 123.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -72,10 +72,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 120.0
-margin_top = 10.0
+margin_left = 150.0
+margin_top = 30.0
 margin_right = 260.0
-margin_bottom = 48.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -96,7 +96,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 120.0
+margin_left = 150.0
 margin_top = 70.0
 margin_right = 260.0
 margin_bottom = 108.0
