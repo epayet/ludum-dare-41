@@ -8,8 +8,6 @@ export (Vector2) var normal_vector
 
 func _ready():
 	normal_vector = Vector2(0, -1).rotated(rotation).normalized()
-	print(normal_vector, get_node(".").get_name())
-	pass
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
