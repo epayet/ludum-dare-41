@@ -58,8 +58,8 @@ func add_bullet(mouse_position):
 	if target:
 		var bullet = Bullet.instance()
 		bullet.connect("action_done", self, "_on_Bullet_action_done")
-		bullet.position = $Player.position
 		var direction = (mouse_position - $Player.position).normalized()
+		bullet.position = $Player.position + direction * Consts.GRID_HALF_CELL_SIZE
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
