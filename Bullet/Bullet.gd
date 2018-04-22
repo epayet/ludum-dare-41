@@ -28,8 +28,6 @@ func set_target_position(target_position):
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('walls'):
 		var normal = area.get("normal_vector")
-		print(normal, " ", area.get_name())
 		var reflect = _direction.reflect(normal)
-		var destination = (reflect * 1000) * -1
-		print(destination, 'desctioansotisa')
+		var destination = (reflect * 1000) * -1  # because reasons
 		self.set_target_position(destination)
