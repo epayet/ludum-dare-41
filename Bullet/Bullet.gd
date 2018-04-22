@@ -37,7 +37,7 @@ func _on_timer_timeout():
 	emit_signal("action_done")
 	queue_free()
 
-func _on_Area2D_area_entered(area):
+func _on_Bullet_area_entered(area):
 	if area.is_in_group('walls'):
 		var normal = area.get("normal_vector")
 		var reflect = _direction.reflect(normal)

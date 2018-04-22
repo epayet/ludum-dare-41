@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="WallRight" type="Area2D" index="0" groups=[
+[node name="WallRight" type="Area2D" groups=[
 "walls",
 ]]
 
