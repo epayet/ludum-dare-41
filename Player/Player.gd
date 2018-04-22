@@ -26,6 +26,7 @@ func move_to(direction):
 	grid_position = next_grid_position
 	var next_position = grid_position * Consts.GRID_CELL_SIZE + OFFSET
 	var tween = get_node("Tween")
+	$Sprite/AnimationPlayer.play("walk")
 	tween.interpolate_property(
 				self, "position",
 				position, next_position,
@@ -36,4 +37,6 @@ func within_bounds (position):
 	return position.x >= 0 and position.y >= 0 and position.x < Consts.GRID_WIDTH and position.y < Consts.GRID_HEIGHT
 
 func on_player_action_completed(object, property):
+	moving = false
+	$Sprite/AnimationPlayer.play("idle")
 	emit_signal("action_done")
