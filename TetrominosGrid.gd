@@ -3,7 +3,6 @@ extends Node2D
 var grid = []
 var blocks = []
 var pre_actions = []
-var current_actions = []
 enum State {
 	IDLE,
 	PRE_ACTION,
@@ -20,12 +19,16 @@ func _process(delta):
 	match state:
 		State.PRE_ACTION:
 			if all_pre_actions_done():
+				pre_actions = []
 				state = State.MOVE_DOWN
 				move_blocs_down(0.1)
 		_:	pass
 
 func all_pre_actions_done ():
-	return current_actions.size() == 0
+	for action in pre_actions:
+		if not action.is_over():
+			return false
+	return true
 
 func reset_grid_state():
 	grid.resize(Consts.GRID_WIDTH)
@@ -47,9 +50,7 @@ func move(speed):
 
 func pre_move(speed):
 	for action in pre_actions:
-		var tetromino = action.block.get_parent()
-		tetromino.execute_action(action)
-	pre_actions = []
+		action.execute()
 
 func move_blocs_down(speed):
 	for tetromino in get_children():
