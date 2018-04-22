@@ -7,26 +7,33 @@ export (int) var speed = 1
 export (Vector2) var grid_position = Vector2(0, 0)
 
 var OFFSET = Vector2(Consts.GRID_CELL_SIZE/2, Consts.GRID_CELL_SIZE/2)
+var tween_position = Vector2()
 
 func _ready():
 	$Tween.connect("tween_completed", self, "move_done")
 	$Area2D.connect("body_entered", self, "body_entered_in_area")
+	tween_position = position
 
 
 func init(grid_position, speed = 1):
 	self.grid_position = grid_position
 	position = grid_position * Consts.GRID_CELL_SIZE + OFFSET
 	self.speed = speed
-	
 	reset_move()
+
+func _physics_process(delta):
+	position = tween_position
 
 func reset_move():
 	next_move = Vector2(0, speed)
-	
+
 func move(duration):
 	is_moving = true
 	grid_position = grid_position + next_move
-	$Tween.interpolate_property(self, "position", position, grid_position * Consts.GRID_CELL_SIZE + OFFSET, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(
+				self, "tween_position",
+				position, grid_position * Consts.GRID_CELL_SIZE + OFFSET,
+				duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
 func move_done(object, key):
