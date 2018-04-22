@@ -1,7 +1,13 @@
 extends KinematicBody2D
 
+const ROCK_BLOCK = 0
+const WOOD_BLOCK = 1
+const STEEL_BLOCK = 2
+const OBSIDIAN_BLOCK = 3
+
 var next_move
 var is_moving = false
+var block_type = ROCK_BLOCK
 
 export (int) var speed = 1
 export (Vector2) var grid_position = Vector2(0, 0)
@@ -15,10 +21,13 @@ func _ready():
 	tween_position = position
 
 
-func init(grid_position, speed = 1):
+func init(grid_position, block_type, speed = 1):
 	self.grid_position = grid_position
+	self.block_type = block_type
 	position = grid_position * Consts.GRID_CELL_SIZE + OFFSET
 	self.speed = speed
+	$Sprite.frame = block_type
+
 	reset_move()
 
 func _physics_process(delta):
