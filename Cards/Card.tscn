@@ -15,7 +15,7 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 position = Vector2( 0, -79.5 )
 texture = ExtResource( 3 )
-hframes = 2
+hframes = 4
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 
