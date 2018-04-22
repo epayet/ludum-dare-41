@@ -4,7 +4,7 @@
 [ext_resource path="res://GUI/Pixel_gothic.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sounds/die.wav" type="AudioStream" id=3]
 
-[node name="Loose" type="Panel" index="0"]
+[node name="Loose" type="Panel"]
 
 pause_mode = 2
 anchor_left = 0.0

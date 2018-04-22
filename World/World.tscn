@@ -20,6 +20,7 @@ speed = 0.1
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 17, 580 )
+z_index = 1
 _sections_unfolded = [ "Collision", "Transform", "Z Index", "collision" ]
 
 [node name="ShootingSight" type="Line2D" parent="." index="2"]
