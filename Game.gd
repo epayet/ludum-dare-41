@@ -1,9 +1,11 @@
 extends Node
 
-var score = 0
 var cards = []
 var Card = preload("res://Cards/Card.tscn")
 var active_card
+
+var card_cooldown_original = 5
+var card_cooldown = card_cooldown_original
 
 func _ready():
 	$World/Player.connect("lives_updated", self, "set_lives")
@@ -19,10 +21,6 @@ func set_lives(count):
 	
 func _on_World_add_score(amount):
 	$GUI.add_score(amount)
-	score += amount
-	
-	if score % 5 == 0:
-		add_random_card()
 
 func add_random_card():
 	var card = build_random_card()
@@ -32,7 +30,8 @@ func add_random_card():
 
 func build_random_card():
 	var card = Card.instance()
-	card.init(0)
+	var type = card.get_random_type()
+	card.init(type)
 	return card
 
 func activate_next_card():
@@ -54,3 +53,7 @@ func player_fires():
 func turn_finished():
 	if active_card:
 		active_card.turn_finished()
+	card_cooldown -= 1
+	if card_cooldown == 0:
+		add_random_card()
+		card_cooldown = card_cooldown_original
