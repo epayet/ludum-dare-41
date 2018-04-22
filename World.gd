@@ -8,7 +8,7 @@ export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
-export (int) var speed = 0.5
+export (int) var speed = 0.1
 
 enum State {
 	WAITING_PLAYER_ACTION,
@@ -58,8 +58,8 @@ func add_bullet(mouse_position):
 	if target:
 		var bullet = Bullet.instance()
 		bullet.connect("action_done", self, "_on_Bullet_action_done")
-		bullet.position = $Player.position
 		var direction = (mouse_position - $Player.position).normalized()
+		bullet.position = $Player.position + direction * Consts.GRID_HALF_CELL_SIZE
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
