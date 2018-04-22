@@ -1,13 +1,8 @@
 extends KinematicBody2D
 
-const ROCK_BLOCK = 0
-const WOOD_BLOCK = 1
-const STEEL_BLOCK = 2
-const OBSIDIAN_BLOCK = 3
-
 var next_move
 var is_moving = false
-var block_type = ROCK_BLOCK
+var block_type = Consts.ROCK_BLOCK
 
 export (int) var speed = 1
 export (Vector2) var grid_position = Vector2(0, 0)

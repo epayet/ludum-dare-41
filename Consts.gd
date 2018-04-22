@@ -9,3 +9,8 @@ const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 
 const BULLET_SPEED = 1000
+
+const ROCK_BLOCK = 0
+const WOOD_BLOCK = 1
+const STEEL_BLOCK = 2
+const OBSIDIAN_BLOCK = 3

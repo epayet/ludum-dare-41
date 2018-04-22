@@ -42,7 +42,7 @@ func init(grid_position, shape):
 	
 	for pos in shape:
 		var block = block_scn.instance()
-		block.init(grid_position + pos, block.ROCK_BLOCK)
+		block.init(grid_position + pos, Consts.ROCK_BLOCK)
 		add_child(block)
 	
 func move(duration):
