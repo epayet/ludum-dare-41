@@ -31,3 +31,6 @@ func _on_Area2D_area_entered(area):
 		var reflect = _direction.reflect(normal)
 		var destination = (reflect * 1000) * -1  # because reasons
 		self.set_target_position(destination)
+	else:
+		self.queue_free()
+		area.queue_free()
