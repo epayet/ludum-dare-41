@@ -64,6 +64,7 @@ func action_done():
 	if next_spawn <= 0:
 		spawn_new_tetromino()
 	move_tetrominos()
+	$GUI.add_score(1)
 
 func _on_Player_action_done():
 	action_done()
