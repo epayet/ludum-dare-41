@@ -58,7 +58,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[node name="Top" type="Sprite" index="0"]
+[node name="Top" type="Sprite"]
 
 texture = ExtResource( 1 )
 hframes = 2

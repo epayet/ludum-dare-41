@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/boo.wav-43eb7fba57ea4e772bc22881d7a55ce5.sample"
+
+[deps]
+
+source_file="res://Sounds/boo.wav"
+source_md5="c99d7187a8d385c4c0d5fb7cb6a6ce2c"
+
+dest_files=[ "res://.import/boo.wav-43eb7fba57ea4e772bc22881d7a55ce5.sample" ]
+dest_md5="47af38936e6fba89bd8e8680045af7bb"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

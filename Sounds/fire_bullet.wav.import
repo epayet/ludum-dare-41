@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fire_bullet.wav-a066a3332bd3278a3f192bb498a24544.sample"
+
+[deps]
+
+source_file="res://Sounds/fire_bullet.wav"
+source_md5="4d19ed672ca0ebf7134e68682944bc38"
+
+dest_files=[ "res://.import/fire_bullet.wav-a066a3332bd3278a3f192bb498a24544.sample" ]
+dest_md5="a4661e38440af11d39129fba7dafb85f"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
