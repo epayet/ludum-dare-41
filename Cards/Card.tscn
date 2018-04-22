@@ -4,7 +4,7 @@
 [ext_resource path="res://Cards/Card.gd" type="Script" id=2]
 [ext_resource path="res://Cards/items.png" type="Texture" id=3]
 
-[node name="Card" type="Sprite"]
+[node name="Card" type="Sprite" index="0"]
 
 texture = ExtResource( 1 )
 hframes = 2
@@ -15,7 +15,8 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 position = Vector2( 0, -79.5 )
 texture = ExtResource( 3 )
-hframes = 2
+hframes = 8
+frame = 4
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 
