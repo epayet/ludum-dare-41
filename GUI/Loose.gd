@@ -8,6 +8,7 @@ func _ready():
 	$Tween.start()
 	
 	$CenterContainer/VBoxContainer/TryAgain.connect("pressed", self, "try_again")
+	$DieSound.play()
 
 func _process(delta):
 	rect_scale = Vector2(scale, scale)

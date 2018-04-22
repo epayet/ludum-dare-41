@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GUI/Loose.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Pixel_gothic.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Sounds/die.wav" type="AudioStream" id=3]
 
-[node name="Loose" type="Panel"]
+[node name="Loose" type="Panel" index="0"]
 
 pause_mode = 2
 anchor_left = 0.0
@@ -111,5 +112,13 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="DieSound" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 
