@@ -15,6 +15,8 @@ export (int) var SCALE = 30
 export (int) var speed = 0.1
 var weapon = Consts.Weapon.DEFAULT
 
+var level = preload("res://Level/Level.tscn").instance()
+
 enum State {
 	WAITING_PLAYER_ACTION,
 	MOVING_TETROMINOS,
@@ -42,8 +44,8 @@ func _process(delta):
 			pass
 
 func spawn_new_tetromino():
-	next_spawn = $Level.next_spawn
-	var tetromino = $Level.get_tetromino()
+	next_spawn = level.next_spawn_in()
+	var tetromino = level.get_tetromino()
 	tetromino.connect("block_destroyed", self, "_on_block_destroyed")
 	$Tetrominos.add_child(tetromino)
 

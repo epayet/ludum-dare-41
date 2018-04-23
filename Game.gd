@@ -11,7 +11,7 @@ func _ready():
 	$World/Player.connect("lives_updated", self, "set_lives")
 	$World.connect("player_fires", self, "player_fires")
 	$World.connect("turn_finished", self, "turn_finished")
-	$World.connect("player_start_move", self, "player_start_move")
+	$World.connect("player_start_action", self, "player_start_move")
 	set_lives($World/Player.lives)
 
 func set_lives(count):

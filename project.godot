@@ -22,6 +22,7 @@ Consts="*res://Consts.gd"
 
 window/size/width=640
 window/size/height=640
+window/size/resizable=false
 
 [layer_names]
 
@@ -29,7 +30,3 @@ window/size/height=640
 2d_physics/layer_2="Block"
 2d_physics/layer_3="Ball"
 2d_physics/layer_4="Wall"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
