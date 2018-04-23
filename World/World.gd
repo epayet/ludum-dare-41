@@ -66,6 +66,7 @@ func add_bullet(mouse_position):
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
+		$Player.set_aiming_visibility(false)
 		emit_signal("player_fires")
 
 func add_lazer(mouse_position):
@@ -78,6 +79,7 @@ func add_lazer(mouse_position):
 		lazer.rotation = rotation
 		set_state(State.MOVING_TETROMINOS)
 		add_child(lazer)
+		$Player.set_aiming_visibility(false)
 		emit_signal("player_fires")
 
 func action_done():
@@ -124,6 +126,7 @@ func _on_Player_action_done():
 	action_done()
 	
 func _on_Bullet_action_done():
+	$Player.set_aiming_visibility(true)
 	action_done()
 
 func _on_block_destroyed(position):
