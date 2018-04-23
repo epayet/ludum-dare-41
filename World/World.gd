@@ -12,7 +12,7 @@ export (PackedScene) var tetrominos
 export (int) var spawn_rate = 5
 export (int) var next_spawn = 0
 export (int) var SCALE = 30
-export (int) var speed = 0.1
+export (int) var speed = 0.2
 var weapon = Consts.Weapon.DEFAULT
 
 var level = preload("res://Level/Level.tscn").instance()
@@ -25,6 +25,7 @@ enum State {
 
 func _ready():
 	next_spawn = 0
+	level.grid = $Tetrominos
 	randomize()
 	set_state(State.WAITING_PLAYER_ACTION)
 
@@ -32,10 +33,10 @@ func _process(delta):
 	match state:
 		State.WAITING_PLAYER_ACTION:
 			if Input.is_action_pressed("ui_left"):
-				if $Player.move_to(Consts.LEFT):
+				if $Tetrominos.is_position_free($Player.grid_position + Consts.LEFT) and $Player.move_to(Consts.LEFT):
 					set_state(State.PLAYER_IN_ACTION)
 			if Input.is_action_pressed("ui_right"):
-				if $Player.move_to(Consts.RIGHT):
+				if $Tetrominos.is_position_free($Player.grid_position + Consts.RIGHT) and $Player.move_to(Consts.RIGHT):
 					set_state(State.PLAYER_IN_ACTION)
 			elif Input.is_mouse_button_pressed(BUTTON_LEFT):
 				fire(get_viewport().get_mouse_position())
@@ -88,7 +89,7 @@ func action_done():
 
 func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
-	$Tetrominos.move(speed / 10)
+	$Tetrominos.move(speed)
 
 func set_state(new_state):
 	state = new_state
