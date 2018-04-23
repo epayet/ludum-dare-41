@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Ludum 41"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://Menu/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -29,7 +29,3 @@ window/size/height=640
 2d_physics/layer_2="Block"
 2d_physics/layer_3="Ball"
 2d_physics/layer_4="Wall"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
