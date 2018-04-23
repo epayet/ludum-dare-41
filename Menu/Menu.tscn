@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Menu/background_menu.png" type="Texture" id=2]
-[ext_resource path="res://Menu/Pixel_Arial.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Menu/kalash_menu.png" type="Texture" id=4]
-[ext_resource path="res://Menu/knight_big.png" type="Texture" id=5]
-[ext_resource path="res://Menu/Alagard.tres" type="DynamicFont" id=6]
-[ext_resource path="res://Menu/Pixel_Arial3.tres" type="DynamicFont" id=7]
-[ext_resource path="res://Menu/Pixel_Arial_Bold.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Menu/Pixel_Arial2.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Sounds/click_menu.wav" type="AudioStream" id=2]
+[ext_resource path="res://Menu/background_menu.png" type="Texture" id=3]
+[ext_resource path="res://Menu/Pixel_Arial.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Menu/kalash_menu.png" type="Texture" id=5]
+[ext_resource path="res://Menu/knight_big.png" type="Texture" id=6]
+[ext_resource path="res://Menu/Alagard.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Menu/Pixel_Arial3.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Menu/Pixel_Arial_Bold.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Menu/Pixel_Arial2.tres" type="DynamicFont" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -63,14 +64,22 @@ tracks/0/keys = {
 
 script = ExtResource( 1 )
 
-[node name="MainMenu" type="Node2D" parent="." index="0"]
+[node name="click_sound" type="AudioStreamPlayer" parent="." index="0"]
+
+stream = ExtResource( 2 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="MainMenu" type="Node2D" parent="." index="1"]
 
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="background" type="Sprite" parent="MainMenu" index="0"]
 
 position = Vector2( 560, 320 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="content" type="Node2D" parent="MainMenu" index="1"]
@@ -95,7 +104,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -123,7 +132,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -151,7 +160,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -165,14 +174,14 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 [node name="KalashLeft" type="Sprite" parent="MainMenu/content" index="3"]
 
 position = Vector2( -328, 214 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="KalashRight" type="Sprite" parent="MainMenu/content" index="4"]
 
 position = Vector2( -160, 214 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 hframes = 2
 frame = 1
 _sections_unfolded = [ "Animation", "Transform" ]
@@ -180,7 +189,7 @@ _sections_unfolded = [ "Animation", "Transform" ]
 [node name="knight_big" type="Sprite" parent="MainMenu/content" index="5"]
 
 position = Vector2( -240, 0 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="anim" type="AnimationPlayer" parent="MainMenu" index="2"]
@@ -194,7 +203,7 @@ anims/Play = SubResource( 1 )
 anims/Start = SubResource( 2 )
 blend_times = [  ]
 
-[node name="Credits" type="Panel" parent="." index="1"]
+[node name="Credits" type="Panel" parent="." index="2"]
 
 visible = false
 anchor_left = 0.0
@@ -244,10 +253,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 9 )
+custom_fonts/bold_italics_font = ExtResource( 7 )
+custom_fonts/italics_font = ExtResource( 8 )
+custom_fonts/bold_font = ExtResource( 9 )
+custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center][b][i]KalashKnight[/i][/b]
 
@@ -325,7 +334,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -335,7 +344,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
-[node name="Rules" type="Panel" parent="." index="2"]
+[node name="Rules" type="Panel" parent="." index="3"]
 
 visible = false
 anchor_left = 0.0
@@ -386,10 +395,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/normal_font = ExtResource( 3 )
+custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "You are a brave knight who wants to join his beloveled princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
-You crossed the mountain and defeat the terrible dragonwith your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
+You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 [center]*** RULES ***[/center]
 You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
@@ -401,7 +410,7 @@ percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
 text = "You are a brave knight who wants to join his beloveled princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
-You crossed the mountain and defeat the terrible dragonwith your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
+You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 *** RULES ***
 You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
@@ -432,7 +441,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -441,5 +450,7 @@ text = "Go back to the menu"
 flat = false
 align = 1
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[connection signal="pressed" from="MainMenu/content/CreditButton" to="." method="_on_CreditButton_pressed"]
 
 
