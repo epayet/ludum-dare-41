@@ -111,9 +111,6 @@ func can_move_block_from_to(block, position, same_tetromino = false):
 		return true
 	return same_tetromino and block_at.get_parent() == block.get_parent()
 
-func is_position_free(position):
-	return within_bounds(position) and grid[position.x][position.y] == null
-
 func move_block_from_to(block, position, speed):
 	grid[position.x][position.y] = block
 	grid[block.grid_position.x][block.grid_position.y] = null
