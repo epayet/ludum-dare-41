@@ -45,11 +45,14 @@ func _process(delta):
 			pass
 
 func spawn_new_tetromino():
-	next_spawn = level.next_spawn_in()
 	var tetromino = level.get_tetromino()
-	for block in tetromino.get_blocks():
-		block.connect("block_destroyed_by_player", self, "_on_block_destroyed")
-	$Tetrominos.add_child(tetromino)
+	if tetromino:
+		next_spawn = level.next_spawn_in()
+		for block in tetromino.get_blocks():
+			block.connect("block_destroyed_by_player", self, "_on_block_destroyed")
+		$Tetrominos.add_child(tetromino)
+		return true
+	return false
 
 func fire(mouse_position):
 	match weapon:

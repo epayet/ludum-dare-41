@@ -12,16 +12,20 @@ func get_tetromino():
 	var tetromino = preload("res://Tetromino/Tetromino.tscn").instance()
 	var type = tetromino.get_random_type()
 	var shape = tetromino.get_random_shape()
+	grid.reset_grid_state()
 	var grid_position = get_tetromino_shape_free_position(shape)
+	if grid_position == null:
+		return null
 	tetromino.init(grid_position, shape, type)
 	return tetromino
 
-func get_tetromino_shape_free_position(shape):
-	grid.reset_grid_state()
+func get_tetromino_shape_free_position(shape, ttl=1000):
+	if ttl == 0:
+		return null
 	var grid_position = Vector2(randi() % Consts.GRID_WIDTH, 0)
 	if can_spawn_tetromino_at(shape, grid_position):
 		return grid_position
-	return get_tetromino_shape_free_position(shape)
+	return get_tetromino_shape_free_position(shape, ttl - 1)
 
 func can_spawn_tetromino_at(shape, position):
 	for block_pos in shape:
