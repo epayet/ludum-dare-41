@@ -6,7 +6,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://background.png" type="Texture" id=5]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -63,9 +63,7 @@ _sections_unfolded = [ "Collision" ]
 build_mode = 0
 polygon = PoolVector2Array( -160, -160, 480, -160, 480, 768, -160, 768, -160, -160, -64, -128, 0, 0, 0, 640, 320, 640, 320, 0, 0, 0 )
 
-[connection signal="move_down_done" from="Tetrominos" to="." method="_on_Tetrominos_move_down_done"]
-
-[connection signal="pre_action_done" from="Tetrominos" to="." method="_on_Tetrominos_pre_action_done"]
+[connection signal="turn_done" from="Tetrominos" to="." method="_on_Tetrominos_turn_done"]
 
 [connection signal="action_done" from="Player" to="." method="_on_Player_action_done"]
 

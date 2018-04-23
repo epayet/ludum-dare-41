@@ -117,13 +117,6 @@ func _on_Area2D_area_exited(area):
 	area.queue_free()
 	pass # replace with function body
 
-func _on_Tetrominos_pre_action_done():
-	$Tetrominos.move_blocs_down()
-
-func _on_Tetrominos_move_down_done():
-	set_state(State.WAITING_PLAYER_ACTION)
-	emit_signal("turn_finished")
-
 func _on_Tetrominos_turn_done():
 	set_state(State.WAITING_PLAYER_ACTION)
 	emit_signal("turn_finished")

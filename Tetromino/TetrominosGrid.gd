@@ -1,7 +1,6 @@
 extends Node2D
 
-signal pre_action_done
-signal move_down_done
+signal turn_done
 
 var grid = []
 var blocks = []
@@ -33,7 +32,7 @@ func _process(delta):
 		State.MOVE_DOWN:
 			if all_tetrominos_moved():
 				state = State.IDLE
-				emit_signal("move_down_done")
+				emit_signal("turn_done")
 		_:	pass
 
 func all_tetrominos_moved():
