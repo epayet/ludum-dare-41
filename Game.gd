@@ -55,6 +55,7 @@ func player_start_move():
 		active_card.player_start_move()
 
 func turn_finished():
+	$GUI.turn_finished()
 	if active_card:
 		active_card.turn_finished()
 	card_cooldown -= 1
