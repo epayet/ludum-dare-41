@@ -8,6 +8,8 @@ enum DIRECTION {
 	RIGHT
 }
 
+var aiming_visible = true
+var bullet = preload("res://Weapons/Bullet/Bullet.tscn").instance()
 var OFFSET = Vector2(Consts.GRID_CELL_SIZE/2, Consts.GRID_CELL_SIZE/2)
 var origin = Vector2()
 var grid_position = Vector2(floor(Consts.GRID_WIDTH / 2), Consts.GRID_HEIGHT - 1)
@@ -45,7 +47,7 @@ func update_shooting_sight():
 	var space_state = get_world_2d().direct_space_state
 	var normal = (get_viewport().get_mouse_position() - position).normalized()
 	var result = space_state.intersect_ray(position, position + normal * 1000, [self])
-	if result:
+	if not result.empty():
 		var target = result.position - position
 		var rotation = atan2(target.y, target.x)
 		$Kalash.flip_v = rotation < -( PI / 2 ) or rotation > PI / 2
@@ -66,3 +68,10 @@ func within_bounds (position):
 func on_player_action_completed(object, property):
 	$Sprite/AnimationPlayer.play("idle")
 	emit_signal("action_done")
+
+func set_aiming_visibility(visible):
+	if visible:
+		$Aiming.show()
+	else:
+		$Aiming.hide()
+	aiming_visible = visible

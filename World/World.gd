@@ -45,11 +45,14 @@ func _process(delta):
 			pass
 
 func spawn_new_tetromino():
-	next_spawn = level.next_spawn_in()
 	var tetromino = level.get_tetromino()
-	for block in tetromino.get_blocks():
-		block.connect("block_destroyed_by_player", self, "_on_block_destroyed")
-	$Tetrominos.add_child(tetromino)
+	if tetromino:
+		next_spawn = level.next_spawn_in()
+		for block in tetromino.get_blocks():
+			block.connect("block_destroyed_by_player", self, "_on_block_destroyed")
+		$Tetrominos.add_child(tetromino)
+		return true
+	return false
 
 func fire(mouse_position):
 	match weapon:
@@ -66,6 +69,7 @@ func add_bullet(mouse_position):
 		bullet.apply_impulse(Vector2(), direction * Consts.BULLET_SPEED)
 		set_state(State.MOVING_TETROMINOS)
 		add_child(bullet)
+		$Player.set_aiming_visibility(false)
 		emit_signal("player_fires")
 
 func add_lazer(mouse_position):
@@ -78,9 +82,11 @@ func add_lazer(mouse_position):
 		lazer.rotation = rotation
 		set_state(State.MOVING_TETROMINOS)
 		add_child(lazer)
+		$Player.set_aiming_visibility(false)
 		emit_signal("player_fires")
 
 func action_done():
+	$Player.set_aiming_visibility(true)
 	next_spawn -= 1
 	if next_spawn <= 0:
 		spawn_new_tetromino()

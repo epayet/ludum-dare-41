@@ -84,10 +84,11 @@ class BlockShowerBehaviour:
 	var world
 	var parent
 	var ttl
+	
 	func _init(parent, world):
 		self.parent = parent
 		self.world = world
-		ttl = randi() % 5 + 5
+		ttl = randi() % 7 + 7
 
 	func activate():
 		pass
@@ -103,8 +104,10 @@ class BlockShowerBehaviour:
 			parent.emit_signal("card_ended")
 			parent.queue_free()
 		else:
-			world.spawn_new_tetromino()
-			ttl -= 1
+			var count = max(ttl, randi() % 2 + 1)
+			for i in range(count):
+				if world.spawn_new_tetromino():
+					ttl -= 1
 
 class LifeBehaviour:
 	var world
