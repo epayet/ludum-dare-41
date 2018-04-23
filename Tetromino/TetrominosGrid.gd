@@ -100,6 +100,9 @@ func move_blocs_down():
 	for tetromino in get_children():
 		tetromino.move(self.speed * 3)
 
+func is_position_free(position):
+	return within_bounds(position) and grid[position.x][position.y] == null
+	
 func can_move_block_from_to(block, position, same_tetromino = false):
 	if not within_bounds(position):
 		return false

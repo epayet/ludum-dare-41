@@ -25,6 +25,7 @@ enum State {
 
 func _ready():
 	next_spawn = 0
+	level.grid = $Tetrominos
 	randomize()
 	set_state(State.WAITING_PLAYER_ACTION)
 

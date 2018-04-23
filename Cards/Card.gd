@@ -40,7 +40,7 @@ func get_behaviour(type, world):
 		LAZER_CARD: return LazerBehaviour.new(self, world)
 		LIFE_UP_CARD: return LifeBehaviour.new(self, world, 1)
 		LIFE_DOWN_CARD: return LifeBehaviour.new(self, world, -1)
-		BOX_SHOWER: return LazerBehaviour.new(self, world)
+		BOX_SHOWER: return BlockShowerBehaviour.new(self, world)
 		LIMITED_ACTION_TIME: return LimitedActionTime.new(self, world)
 		_: print("No behaviour !")
 
@@ -79,6 +79,32 @@ class LazerBehaviour:
 		if used:
 			parent.emit_signal("card_ended")
 			parent.queue_free()
+			
+class BlockShowerBehaviour:
+	var world
+	var parent
+	var ttl
+	func _init(parent, world):
+		self.parent = parent
+		self.world = world
+		ttl = randi() % 5 + 5
+
+	func activate():
+		pass
+
+	func player_start_move():
+		pass
+
+	func player_fires():
+		pass
+
+	func turn_finished():
+		if ttl == 0:
+			parent.emit_signal("card_ended")
+			parent.queue_free()
+		else:
+			world.spawn_new_tetromino()
+			ttl -= 1
 
 class LifeBehaviour:
 	var world
