@@ -29,7 +29,7 @@ hframes = 2
 frame = 1
 _sections_unfolded = [ "Animation" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = ExtResource( 5 )
 volume_db = -15.0
