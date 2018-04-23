@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://player_and_gun.png" type="Texture" id=2]
-[ext_resource path="res://Player/kalash.png" type="Texture" id=3]
+[ext_resource path="res://Player/kalash.png" type="Texture" id=2]
+[ext_resource path="res://player_and_gun.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -71,11 +71,19 @@ sharp_limit = 2.0
 round_precision = 8
 _sections_unfolded = [ "Fill", "Z Index" ]
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Kalash" type="Sprite" parent="." index="1"]
+
+position = Vector2( 0.0861502, -9.53674e-07 )
+scale = Vector2( 0.328125, 0.356908 )
+texture = ExtResource( 2 )
+offset = Vector2( 80, 0 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
 
 editor/display_folded = true
 position = Vector2( -9.53674e-07, -9.53674e-07 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 vframes = 4
 hframes = 2
 frame = 5
@@ -94,12 +102,12 @@ anims/walk = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape" type="CollisionShape2D" parent="." index="3"]
 
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Tween" type="Tween" parent="." index="3"]
+[node name="Tween" type="Tween" parent="." index="4"]
 
 repeat = false
 playback_process_mode = 1
@@ -107,13 +115,5 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-
-[node name="Kalash" type="Sprite" parent="." index="4"]
-
-position = Vector2( -9.53674e-07, -9.53674e-07 )
-scale = Vector2( 0.328125, 0.356908 )
-texture = ExtResource( 3 )
-offset = Vector2( 117.333, 4.76837e-06 )
-_sections_unfolded = [ "Transform" ]
 
 
