@@ -50,7 +50,8 @@ func spawn_new_tetromino():
 
 func random_tetromino_at(grid_position):
 	var tetrominos = preload("res://Tetromino/Tetromino.tscn").instance()
-	tetrominos.init(grid_position, tetrominos.get_random_shape())
+	var type = tetrominos.get_random_type()
+	tetrominos.init(grid_position, tetrominos.get_random_shape(), type)
 	return tetrominos
 
 func fire(mouse_position):
@@ -98,7 +99,7 @@ func action_done():
 
 func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
-	$Tetrominos.move(speed)
+	$Tetrominos.move(speed / 10)
 
 func set_state(new_state):
 	state = new_state
