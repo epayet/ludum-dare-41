@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion.png-8b94951dcb1dcdb10a3c1b9e3e4979f2.stex"
+path="res://.import/explosion2.png-ed3924796089f1af764388c90ac7111f.stex"
 
 [deps]
 
-source_file="res://Tetromino/Effects/explosion.png"
-source_md5="bd76df910a888efabd0d150907ad78a5"
+source_file="res://Tetromino/Effects/explosion2.png"
+source_md5="9f4561818b6c9feae5bc0ff64cbc1bf6"
 
-dest_files=[ "res://.import/explosion.png-8b94951dcb1dcdb10a3c1b9e3e4979f2.stex" ]
-dest_md5="6f9a373c60af68a8937450e9137c7e52"
+dest_files=[ "res://.import/explosion2.png-ed3924796089f1af764388c90ac7111f.stex" ]
+dest_md5="2f40408b1f773118504e5031d658c10c"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

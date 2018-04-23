@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion.png-8b94951dcb1dcdb10a3c1b9e3e4979f2.stex"
+path="res://.import/kalash.png-e719ec99c8f2a57ae71a766dbf12330f.stex"
 
 [deps]
 
-source_file="res://Tetromino/Effects/explosion.png"
-source_md5="bd76df910a888efabd0d150907ad78a5"
+source_file="res://Player/kalash.png"
+source_md5="442af782ad5d2718f3cefb0e36828fc0"
 
-dest_files=[ "res://.import/explosion.png-8b94951dcb1dcdb10a3c1b9e3e4979f2.stex" ]
-dest_md5="6f9a373c60af68a8937450e9137c7e52"
+dest_files=[ "res://.import/kalash.png-e719ec99c8f2a57ae71a766dbf12330f.stex" ]
+dest_md5="69ae414c7aeae7218e6f7db901d82081"
 
 [params]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player_and_gun.png" type="Texture" id=2]
+[ext_resource path="res://Player/kalash.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -60,7 +61,17 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 time_unit = 0.2
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Aiming" type="Line2D" parent="." index="0"]
+
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0
+default_color = Color( 0.561523, 0.568848, 0.605469, 1 )
+texture_mode = -1002918736
+sharp_limit = 2.0
+round_precision = 8
+_sections_unfolded = [ "Fill", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
 
 editor/display_folded = true
 position = Vector2( -9.53674e-07, -9.53674e-07 )
@@ -83,12 +94,12 @@ anims/walk = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape" type="CollisionShape2D" parent="." index="2"]
 
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Tween" type="Tween" parent="." index="2"]
+[node name="Tween" type="Tween" parent="." index="3"]
 
 repeat = false
 playback_process_mode = 1
@@ -97,14 +108,12 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Aiming" type="Line2D" parent="." index="3"]
+[node name="Kalash" type="Sprite" parent="." index="4"]
 
-points = PoolVector2Array( 0, 0, 0, 0 )
-width = 2.0
-default_color = Color( 0.561523, 0.568848, 0.605469, 1 )
-texture_mode = -1002918736
-sharp_limit = 2.0
-round_precision = 8
-_sections_unfolded = [ "Z Index" ]
+position = Vector2( -9.53674e-07, -9.53674e-07 )
+scale = Vector2( 0.328125, 0.356908 )
+texture = ExtResource( 3 )
+offset = Vector2( 117.333, 4.76837e-06 )
+_sections_unfolded = [ "Transform" ]
 
 

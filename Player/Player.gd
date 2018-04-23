@@ -42,8 +42,15 @@ func _physics_process(delta):
 	position = tween_position
 
 func update_shooting_sight():
-	var target = get_viewport().get_mouse_position()
-	$Aiming.points[1] = (target - position).normalized() * 1000
+	var space_state = get_world_2d().direct_space_state
+	var normal = (get_viewport().get_mouse_position() - position).normalized()
+	var result = space_state.intersect_ray(position, position + normal * 1000, [self])
+	if result:
+		var target = result.position - position
+		var rotation = atan2(target.y, target.x)
+		$Kalash.flip_v = rotation < -( PI / 2 ) or rotation > PI / 2
+		$Kalash.rotation = rotation
+		$Aiming.points[1] = target
 
 func add_lives(count):
 	lives += count
