@@ -83,6 +83,7 @@ func add_lazer(mouse_position):
 		emit_signal("player_fires")
 
 func action_done():
+	$Player.set_aiming_visibility(true)
 	next_spawn -= 1
 	if next_spawn <= 0:
 		spawn_new_tetromino()
@@ -126,7 +127,6 @@ func _on_Player_action_done():
 	action_done()
 	
 func _on_Bullet_action_done():
-	$Player.set_aiming_visibility(true)
 	action_done()
 
 func _on_block_destroyed(position):
