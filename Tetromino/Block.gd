@@ -53,3 +53,6 @@ func body_entered_in_area(object):
 	if object.is_in_group("player"):
 		object.rem_lives(1)
 		get_parent().queue_free()
+		
+func is_unbreakable():
+	return block_type == Consts.OBSIDIAN_BLOCK
