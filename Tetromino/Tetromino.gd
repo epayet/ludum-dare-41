@@ -74,7 +74,8 @@ func block_has_been_hit (bullet, block, normal):
 			action = PreMoveTetrominoAction.new(block, direction)
 		Consts.ROCK_BLOCK:
 			action = PreMoveBlockAction.new(block, direction)
-		_:	pass
+		_:
+			pass
 	if action:
 		get_parent().append_new_action(action)
 
@@ -83,8 +84,8 @@ func get_direction_from_normal(normal):
 	var y = abs(normal.y)
 	if x != 1 and y != 1:
 		if x < y:
-			return Vector2(0, y).normalized() * -1
-		return Vector2(x, 0).normalized() * -1
+			return Vector2(0, normal.y).normalized() * -1
+		return Vector2(normal.x, 0).normalized() * -1
 	return normal * -1
 
 class PreMoveBlockAction:

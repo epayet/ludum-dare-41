@@ -4,10 +4,10 @@ signal action_done
 
 var SPEED = 800
 var _direction = null
-var ttl = 5
+var ttl = 3
 
 func _ready():
-	var ttl = 5
+	var ttl = 3
 	var timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout")
 	add_child(timer) #to _process

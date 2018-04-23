@@ -22,6 +22,7 @@ Consts="*res://Consts.gd"
 
 window/size/width=640
 window/size/height=640
+window/size/resizable=false
 
 [layer_names]
 
