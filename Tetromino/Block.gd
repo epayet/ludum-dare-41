@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal block_destroyed_by_player
+
 var next_move
 var is_moving = false
 var block_type = Consts.ROCK_BLOCK
@@ -56,3 +58,7 @@ func body_entered_in_area(object):
 		
 func is_unbreakable():
 	return block_type == Consts.OBSIDIAN_BLOCK
+
+func destroy_by_player():
+	emit_signal("block_destroyed_by_player", grid_position)
+	queue_free()

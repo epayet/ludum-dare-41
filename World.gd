@@ -46,7 +46,8 @@ func _process(delta):
 func spawn_new_tetromino():
 	next_spawn = level.next_spawn_in()
 	var tetromino = level.get_tetromino()
-	tetromino.connect("block_destroyed", self, "_on_block_destroyed")
+	for block in tetromino.get_blocks():
+		block.connect("block_destroyed_by_player", self, "_on_block_destroyed")
 	$Tetrominos.add_child(tetromino)
 
 func fire(mouse_position):
@@ -125,5 +126,6 @@ func _on_Bullet_action_done():
 	action_done()
 
 func _on_block_destroyed(position):
+	emit_signal("add_score", 1)
 	spawn_explosion_at(position)
 

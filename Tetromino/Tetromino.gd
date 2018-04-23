@@ -2,7 +2,6 @@ extends Node2D
 
 signal hit
 
-signal block_destroyed
 var player
 var is_moving
 export (bool) var orientation = false
@@ -68,8 +67,7 @@ func block_has_been_hit (bullet, block, normal):
 	var direction = get_direction_from_normal(normal)
 	match block.block_type:
 		Consts.WOOD_BLOCK:
-			emit_signal("block_destroyed", block.grid_position)
-			block.queue_free()
+			block.destroy_by_player()
 		Consts.STEEL_BLOCK:
 			action = PreMoveTetrominoAction.new(block, direction)
 		Consts.ROCK_BLOCK:

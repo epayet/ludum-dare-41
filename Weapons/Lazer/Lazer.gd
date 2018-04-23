@@ -40,7 +40,7 @@ func _physics_process(delta):
 func lazer_step_complete(object, key):
 	if target != null and target.is_in_group("blocks") and not target.is_unbreakable():
 		current_hit.play()
-		target.queue_free()
+		target.destroy_by_player()
 		target = null
 	elif target != null and (target.is_in_group("walls") or target.is_in_group("blocks") and target.is_unbreakable()):
 		emit_signal("action_done")
