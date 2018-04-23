@@ -60,7 +60,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Menu" type="Node"]
+[node name="Menu" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -395,24 +395,24 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "You are a brave knight who wants to join his beloveled princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
+bbcode_text = "You are a brave knight who wants to join his beloved princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
 You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 [center]*** RULES ***[/center]
 You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
-Sometimes your fairy godmother will give you a bonus card, but sometimes she is drunk and it's not a bonus.
+Sometimes your fairy godmother will give you a bonus card, but sometimes she's drunk and it's not a bonus.
 Show the king that you can escape this by scoring the maximum.
 Good luck."
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "You are a brave knight who wants to join his beloveled princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
+text = "You are a brave knight who wants to join his beloved princess to kiss her. But the king doesn't agree. Actually he doesn't like you...
 You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 *** RULES ***
 You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
-Sometimes your fairy godmother will give you a bonus card, but sometimes she is drunk and it's not a bonus.
+Sometimes your fairy godmother will give you a bonus card, but sometimes she's drunk and it's not a bonus.
 Show the king that you can escape this by scoring the maximum.
 Good luck."
 scroll_active = false
