@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kalash_menu.png-45b0f85b6eb5ace7cef885b6ccbf8d4f.stex"
+path="res://.import/kalash_menu.png-16bce8f59901181361c106c0b9994d58.stex"
 
 [deps]
 
-source_file="res://Menu_Test2/kalash_menu.png"
+source_file="res://Menu/kalash_menu.png"
 source_md5="1c3783b54298d79191a815df7b24cfc5"
 
-dest_files=[ "res://.import/kalash_menu.png-45b0f85b6eb5ace7cef885b6ccbf8d4f.stex" ]
+dest_files=[ "res://.import/kalash_menu.png-16bce8f59901181361c106c0b9994d58.stex" ]
 dest_md5="f120ec63ecea7012412914219ba5fe3a"
 
 [params]

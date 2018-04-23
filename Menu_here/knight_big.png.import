@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight_big.png-11bb54ee920ec0c97a895abacd5ddf6b.stex"
+path="res://.import/knight_big.png-3a5de9721424eb68a8ea48d4aef4d8c4.stex"
 
 [deps]
 
-source_file="res://Menu_Test2/knight_big.png"
+source_file="res://Menu_here/knight_big.png"
 source_md5="8dc7c2f8ca124f7b0c09ed815d443fce"
 
-dest_files=[ "res://.import/knight_big.png-11bb54ee920ec0c97a895abacd5ddf6b.stex" ]
+dest_files=[ "res://.import/knight_big.png-3a5de9721424eb68a8ea48d4aef4d8c4.stex" ]
 dest_md5="1f39d3b8cdc3382114bc3a1861c92bf3"
 
 [params]

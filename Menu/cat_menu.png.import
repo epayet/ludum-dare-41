@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat_menu.png-076c2d2d86281c0fdefd274c8db0ba0f.stex"
+path="res://.import/cat_menu.png-419ff5d979c04dc70d8727965bbb1585.stex"
 
 [deps]
 
-source_file="res://Menu_Test2/cat_menu.png"
+source_file="res://Menu/cat_menu.png"
 source_md5="876f79eef6fb799d2499e4feed64ab40"
 
-dest_files=[ "res://.import/cat_menu.png-076c2d2d86281c0fdefd274c8db0ba0f.stex" ]
+dest_files=[ "res://.import/cat_menu.png-419ff5d979c04dc70d8727965bbb1585.stex" ]
 dest_md5="0b301fb269ef5effacbe3b1bf40cb1c2"
 
 [params]
