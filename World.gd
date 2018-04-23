@@ -120,6 +120,7 @@ func spawn_explosion_at(grid_position):
 	explosion.position.y += Consts.GRID_HALF_CELL_SIZE
 	add_child(explosion)
 	explosion.play()
+	$Explosion.play()
 	
 # SIGNAL'S CALLBACKS
 

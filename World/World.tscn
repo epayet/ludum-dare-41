@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Tetromino/Tetromino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tetromino/TetrominosGrid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://background.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/explosion.wav" type="AudioStream" id=6]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -43,6 +44,8 @@ _sections_unfolded = [ "Offset", "Z Index" ]
 
 [node name="Walls" type="Node" parent="." index="4"]
 
+editor/display_folded = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" index="0" groups=[
 "walls",
 ]]
@@ -60,6 +63,14 @@ _sections_unfolded = [ "Collision" ]
 
 build_mode = 0
 polygon = PoolVector2Array( -160, -160, 480, -160, 480, 768, -160, 768, -160, -160, -64, -128, 0, 0, 0, 640, 320, 640, 320, 0, 0, 0 )
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="turn_done" from="Tetrominos" to="." method="_on_Tetrominos_turn_done"]
 

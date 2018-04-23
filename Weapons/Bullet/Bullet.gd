@@ -25,7 +25,7 @@ func _on_timer_timeout():
 func _integrate_forces(state):
 	if state.get_contact_count():
 		var body = state.get_contact_collider_object(0)
-		if body.is_in_group("blocks"):
+		if body and body.is_in_group("blocks"):
 			body.hit_by_bullet(self, state.get_contact_local_normal(0))
 		ttl -= 1
 		if ttl == 0:
