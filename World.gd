@@ -42,16 +42,10 @@ func _process(delta):
 			pass
 
 func spawn_new_tetromino():
-	next_spawn = spawn_rate
-	var tetromino = random_tetromino_at(Vector2(randi() % Consts.GRID_WIDTH, 0))
+	next_spawn = $Level.next_spawn
+	var tetromino = $Level.get_tetromino()
 	tetromino.connect("block_destroyed", self, "_on_block_destroyed")
 	$Tetrominos.add_child(tetromino)
-
-func random_tetromino_at(grid_position):
-	var tetrominos = preload("res://Tetromino/Tetromino.tscn").instance()
-	var type = tetrominos.get_random_type()
-	tetrominos.init(grid_position, tetrominos.get_random_shape(), Consts.WOOD_BLOCK)
-	return tetrominos
 
 func fire(mouse_position):
 	match weapon:
