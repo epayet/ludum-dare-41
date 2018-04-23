@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Menu/background_menu.png" type="Texture" id=2]
 [ext_resource path="res://Menu/knight_big.png" type="Texture" id=3]
 [ext_resource path="res://Menu/Pixel_Arial.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Menu/kalash_menu.png" type="Texture" id=5]
+[ext_resource path="res://Menu/Pixel_Arial3.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Menu/Alagard.tres" type="DynamicFont" id=7]
+[ext_resource path="res://GUI/Pixel_gothic.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Menu/Pixel_Arial2.tres" type="DynamicFont" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -217,7 +221,59 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Credits" index="0"]
+[node name="Info" type="RichTextLabel" parent="Credits" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 570.0
+margin_right = 640.0
+margin_bottom = 606.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]This game was made for Ludum Dare 41 using Godot Engine.[/center]"
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "This game was made for Ludum Dare 41 using Godot Engine."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "Grow Direction", "Rect", "Size Flags", "custom_fonts" ]
+
+[node name="Kalashknight" type="Label" parent="Credits" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 134.0
+margin_top = 22.0
+margin_right = 550.0
+margin_bottom = 79.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 7 )
+text = "KalashKnight"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -242,51 +298,63 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 45.0
-margin_top = 45.0
+margin_top = 120.0
 margin_right = 595.0
-margin_bottom = 595.0
-rect_min_size = Vector2( 550, 550 )
+margin_bottom = 520.0
+rect_min_size = Vector2( 550, 400 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/normal_font = ExtResource( 4 )
+custom_fonts/italics_font = ExtResource( 6 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[center]Programation
-......
+bbcode_text = "[center][b]PROGRAMATION[/b]
+Damien Gabrielle (@eptwallabah)
+Emmanuel Payet (@jakspining)
+Jean-Matthieu Golfier (@jmgolfier)
+Thomas Loubiou (@xabufr)
 
-Graphisme
-......
+[b]GRAPHICS[/b]
+Cassandra Courjaud (@kalavecy)
 
-Music
-.......
+[b]MUSIC[/b]
+Emmanuel Payet (@jakspining)
+Jean-Matthieu Golfier (@jmgolfier)
 
-Special thanks to
-.........[/center]"
+[b]RESSOURCES[/b]
+Hewett Tsoi [i]for Alagard font[/i]
+Cali Martin (SparklyDest) [i]for Gothic pixel font[/i][/center]"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "Programation
-......
+text = "PROGRAMATION
+Damien Gabrielle (@eptwallabah)
+Emmanuel Payet (@jakspining)
+Jean-Matthieu Golfier (@jmgolfier)
+Thomas Loubiou (@xabufr)
 
-Graphisme
-......
+GRAPHICS
+Cassandra Courjaud (@kalavecy)
 
-Music
-.......
+MUSIC
+Emmanuel Payet (@jakspining)
+Jean-Matthieu Golfier (@jmgolfier)
 
-Special thanks to
-........."
+RESSOURCES
+Hewett Tsoi for Alagard font
+Cali Martin (SparklyDest) for Gothic pixel font"
 scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Anchor", "BBCode", "Focus", "Grow Direction", "Hint", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="BackToMenu" type="Button" parent="Credits" index="1"]
+[node name="BackToMenu" type="Button" parent="Credits" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -316,7 +384,6 @@ _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="Rules" type="Panel" parent="." index="3"]
 
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
