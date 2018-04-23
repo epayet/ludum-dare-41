@@ -61,16 +61,26 @@ func has_children_moving():
 
 func block_has_been_hit (bullet, block, normal):
 	var action = null
+	var direction = get_direction_from_normal(normal)
 	match block.block_type:
 		Consts.WOOD_BLOCK:
 			action = DestroyBlockAction.new(block)
 		Consts.STEEL_BLOCK:
-			action = PreMoveTetrominoAction.new(block, normal * -1)
+			action = PreMoveTetrominoAction.new(block, direction)
 		Consts.ROCK_BLOCK:
-			action = PreMoveBlockAction.new(block, normal * -1)
+			action = PreMoveBlockAction.new(block, direction)
 		_:	pass
 	if action:
 		get_parent().append_new_action(action)
+
+func get_direction_from_normal(normal):
+	var x = abs(normal.x)
+	var y = abs(normal.y)
+	if x != 1 and y != 1:
+		if x < y:
+			return Vector2(0, y).normalized() * -1
+		return Vector2(x, 0).normalized() * -1
+	return normal * -1
 
 class PreMoveBlockAction:
 	var block
@@ -109,10 +119,9 @@ class PreMoveTetrominoAction:
 	func execute(grid, speed):
 		if can_move_tetromino(grid):
 			move_tetromino(grid, speed)
-		pass
 
 	func is_over():
-		return true
+		return not tetromino.is_moving
 
 class DestroyBlockAction:
 	var block

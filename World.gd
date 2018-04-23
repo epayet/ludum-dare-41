@@ -27,8 +27,7 @@ func _ready():
 	set_state(State.WAITING_PLAYER_ACTION)
 
 func _process(delta):
-	$ShootingSight.points[0] = $Player.position	
-	update_state()
+	$ShootingSight.points[0] = $Player.position
 	update_sight_shooting()
 	match state:
 		State.WAITING_PLAYER_ACTION:
@@ -43,11 +42,6 @@ func _process(delta):
 				set_state(State.PLAYER_IN_ACTION)
 		_:
 			pass
-
-func update_state():
-	if state == State.MOVING_TETROMINOS and all_tetrominos_moved():
-		set_state(State.WAITING_PLAYER_ACTION)
-		emit_signal("turn_finished")
 
 func spawn_new_tetromino():
 	next_spawn = spawn_rate
@@ -87,7 +81,6 @@ func add_lazer(mouse_position):
 		set_state(State.MOVING_TETROMINOS)
 		add_child(lazer)
 		emit_signal("player_fires")
-	
 
 func update_sight_shooting():
 	var target = get_viewport().get_mouse_position()
@@ -103,13 +96,6 @@ func action_done():
 	move_tetrominos()
 	emit_signal("add_score", 1)
 
-func _on_Player_action_done():
-	action_done()
-	
-func _on_Bullet_action_done():
-	action_done()
-
-
 func move_tetrominos():
 	set_state(State.MOVING_TETROMINOS)
 	$Tetrominos.move(speed)
@@ -118,12 +104,6 @@ func set_state(new_state):
 	state = new_state
 	if state == State.PLAYER_IN_ACTION:
 		emit_signal("player_start_action")
-		
-func all_tetrominos_moved():
-	for tetromino in $Tetrominos.get_children():
-		if tetromino.is_moving:
-			return false
-	return true
 
 func _get_nearest_node(mouse_position):
 	var space_state = get_world_2d().direct_space_state
@@ -131,6 +111,19 @@ func _get_nearest_node(mouse_position):
 	endPosition += $Player.position
 	return space_state.intersect_ray($Player.position, endPosition, [$Player])
 
+# SIGNAL'S CALLBACKS
+
 func _on_Area2D_area_exited(area):
 	area.queue_free()
 	pass # replace with function body
+
+func _on_Tetrominos_turn_done():
+	set_state(State.WAITING_PLAYER_ACTION)
+	emit_signal("turn_finished")
+
+func _on_Player_action_done():
+	action_done()
+	
+func _on_Bullet_action_done():
+	action_done()
+
