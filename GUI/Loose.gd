@@ -7,7 +7,8 @@ func _ready():
 	$Tween.interpolate_property(self, "scale", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 	
-	$CenterContainer/VBoxContainer/TryAgain.connect("pressed", self, "try_again")
+	$CenterContainer/VBoxContainer/HBox/TryAgain.connect("pressed", self, "try_again")
+	$CenterContainer/VBoxContainer/HBox/MainMenu.connect("pressed", self, "main_menu")
 	$DieSound.play()
 
 func _process(delta):
@@ -18,3 +19,7 @@ func _process(delta):
 func try_again():
 	get_tree().paused = false
 	get_tree().change_scene("res://Game.tscn")
+
+func main_menu():
+	get_tree().paused = false
+	get_tree().change_scene("res://Menu/Menu.tscn")
