@@ -2,6 +2,7 @@ extends Node2D
 
 signal hit
 
+signal block_destroyed
 var player
 var is_moving
 export (bool) var orientation = false
@@ -10,7 +11,7 @@ var shape
 const SHAPE_I = [Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)]
 const SHAPE_L = [Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2)]
 const SHAPE_J = [Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(0, 2)]
-const SHAPE_T = [Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2)]
+const SHAPE_T = [Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 1)]
 const SHAPE_S = [Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)]
 const SHAPE_Z = [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(2, 1)]
 const SHAPE_SQUARE = [Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)]
@@ -28,6 +29,10 @@ func _process(delta):
 func get_random_shape():
 	return SHAPES[randi() % SHAPES.size()]
 
+func get_random_type():
+	var types = [Consts.WOOD_BLOCK, Consts.ROCK_BLOCK, Consts.STEEL_BLOCK, Consts.OBSIDIAN_BLOCK]
+	return types[randi() % types.size()]
+
 func get_blocks():
 	return get_children()
 
@@ -38,14 +43,13 @@ func compute_shape_dimensions(shape):
 		dim.y = max(dim.y, block.y)
 	return dim
 
-func init(grid_position, shape):
+func init(grid_position, shape, type):
 	var block_scn = preload("res://Tetromino/Block.tscn")
 	var dim = compute_shape_dimensions(shape)
 	grid_position.x = min(grid_position.x, Consts.GRID_WIDTH - dim.x - 1)
-
 	for pos in shape:
 		var block = block_scn.instance()
-		block.init(grid_position + pos, Consts.ROCK_BLOCK)
+		block.init(grid_position + pos, type)
 		add_child(block)
 
 func move(duration):
@@ -61,16 +65,27 @@ func has_children_moving():
 
 func block_has_been_hit (bullet, block, normal):
 	var action = null
+	var direction = get_direction_from_normal(normal)
 	match block.block_type:
 		Consts.WOOD_BLOCK:
-			action = DestroyBlockAction.new(block)
+			emit_signal("block_destroyed", block.grid_position)
+			block.queue_free()
 		Consts.STEEL_BLOCK:
-			action = PreMoveTetrominoAction.new(block, normal * -1)
+			action = PreMoveTetrominoAction.new(block, direction)
 		Consts.ROCK_BLOCK:
-			action = PreMoveBlockAction.new(block, normal * -1)
+			action = PreMoveBlockAction.new(block, direction)
 		_:	pass
 	if action:
 		get_parent().append_new_action(action)
+
+func get_direction_from_normal(normal):
+	var x = abs(normal.x)
+	var y = abs(normal.y)
+	if x != 1 and y != 1:
+		if x < y:
+			return Vector2(0, y).normalized() * -1
+		return Vector2(x, 0).normalized() * -1
+	return normal * -1
 
 class PreMoveBlockAction:
 	var block
@@ -109,10 +124,9 @@ class PreMoveTetrominoAction:
 	func execute(grid, speed):
 		if can_move_tetromino(grid):
 			move_tetromino(grid, speed)
-		pass
 
 	func is_over():
-		return true
+		return not tetromino.is_moving
 
 class DestroyBlockAction:
 	var block

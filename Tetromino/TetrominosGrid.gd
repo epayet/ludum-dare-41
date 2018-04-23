@@ -1,18 +1,23 @@
 extends Node2D
 
+signal turn_done
+
 var grid = []
 var blocks = []
 var pre_actions = []
 enum State {
 	IDLE,
 	PRE_ACTION,
+	POST_ACTION,
 	MOVE_DOWN
 }
+var speed = 0.1
 var state = State.IDLE
 
 func _ready():
 	reset_grid_state()
 	pre_actions = []
+	speed = 0.1
 	pass
 
 func _process(delta):
@@ -20,14 +25,29 @@ func _process(delta):
 		State.PRE_ACTION:
 			if all_pre_actions_done():
 				pre_actions = []
-				state = State.MOVE_DOWN
-				move_blocs_down(0.1)
+				post_actions()
+		State.POST_ACTION:
+			if all_post_actions_done():
+				move_blocs_down()
+		State.MOVE_DOWN:
+			if all_tetrominos_moved():
+				state = State.IDLE
+				emit_signal("turn_done")
 		_:	pass
+
+func all_tetrominos_moved():
+	for tetromino in get_children():
+		if tetromino.is_moving:
+			return false
+	return true
 
 func all_pre_actions_done ():
 	for action in pre_actions:
 		if not action.is_over():
 			return false
+	return true
+
+func all_post_actions_done():
 	return true
 
 func reset_grid_state():
@@ -38,7 +58,13 @@ func reset_grid_state():
 		for y in range(Consts.GRID_HEIGHT):
 			grid[x][y] = null
 	for block in get_all_blocks():
-		grid[block.grid_position.x][block.grid_position.y] = block
+		if within_bounds(block.grid_position):
+			grid[block.grid_position.x][block.grid_position.y] = block
+		else:
+			block.queue_free()
+
+func has_finished_turn():
+	return true
 
 func get_all_blocks():
 	var blocks = []
@@ -53,17 +79,26 @@ func get_block_from(grid_position):
 	return null
 
 func move(speed):
-	state = State.PRE_ACTION
+	self.speed = speed
 	reset_grid_state()
-	pre_move(speed)
+	pre_actions()
 
-func pre_move(speed):
+func pre_actions():
+	state = State.PRE_ACTION
 	for action in pre_actions:
-		action.execute(self, speed)
+		action.execute(self, self.speed)
 
-func move_blocs_down(speed):
+func post_actions():
+	state = State.POST_ACTION
+	var deleted_line = 0
+	for i in range(Consts.GRID_HEIGHT):
+		if is_line_complete(i):
+			delete_line(i)
+
+func move_blocs_down():
+	state = State.MOVE_DOWN
 	for tetromino in get_children():
-		tetromino.move(speed)
+		tetromino.move(self.speed * 3)
 
 func can_move_block_from_to(block, position, same_tetromino = false):
 	if not within_bounds(position):
@@ -78,6 +113,18 @@ func move_block_from_to(block, position, speed):
 	grid[block.grid_position.x][block.grid_position.y] = null
 	block.next_move = position - block.grid_position
 	block.move(speed)
+
+func delete_line(line_number):
+	for i in range(Consts.GRID_WIDTH):
+		var block = grid[i][line_number]
+		grid[i][line_number] = null
+		if block:
+			block.queue_free()
+
+func is_line_complete(line_number):
+	for i in range(Consts.GRID_WIDTH):
+		if grid[i][line_number] == null:
+			return false
 
 func append_new_action (action):
 	pre_actions.append(action)
