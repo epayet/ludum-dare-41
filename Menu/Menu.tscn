@@ -260,7 +260,6 @@ custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center][b][i]KalashKnight[/i][/b]
 
-
 [b]-- PROGRAMMING --[/b]
 Eptwalabha [i](@eptwalabah)[/i]
 Emmanuel Payet [i](@jakspining)[/i]
@@ -277,7 +276,7 @@ Jean-Matthieu Golfier [i](@jmgolfier)[/i]
 [b]-- RESSOURCES --[/b]
 Hewett Tsoi [i]for Alagard font[/i]
 Caly Martin (SparklyDest) [i]for Gothic Pixel font[/i]
-
+Music: Eric Skiff - [i]Jumpshot - Resistor Anthems[/i]
 
 
 [i]This game was made for Ludum Dare 41 using Godot Engine.
@@ -287,7 +286,6 @@ percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
 text = "KalashKnight
-
 
 -- PROGRAMMING --
 Eptwalabha (@eptwalabah)
@@ -305,7 +303,7 @@ Jean-Matthieu Golfier (@jmgolfier)
 -- RESSOURCES --
 Hewett Tsoi for Alagard font
 Caly Martin (SparklyDest) for Gothic Pixel font
-
+Music: Eric Skiff - Jumpshot - Resistor Anthems
 
 
 This game was made for Ludum Dare 41 using Godot Engine.
