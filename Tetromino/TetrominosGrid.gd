@@ -58,7 +58,10 @@ func reset_grid_state():
 		for y in range(Consts.GRID_HEIGHT):
 			grid[x][y] = null
 	for block in get_all_blocks():
-		grid[block.grid_position.x][block.grid_position.y] = block
+		if within_bounds(block.grid_position):
+			grid[block.grid_position.x][block.grid_position.y] = block
+		else:
+			block.queue_free()
 
 func has_finished_turn():
 	return true

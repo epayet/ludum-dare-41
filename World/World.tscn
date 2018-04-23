@@ -43,8 +43,6 @@ _sections_unfolded = [ "Offset", "Z Index" ]
 
 [node name="Walls" type="Node" parent="." index="4"]
 
-editor/display_folded = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" index="0" groups=[
 "walls",
 ]]

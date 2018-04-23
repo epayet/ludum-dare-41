@@ -46,12 +46,13 @@ func _process(delta):
 func spawn_new_tetromino():
 	next_spawn = spawn_rate
 	var tetromino = random_tetromino_at(Vector2(randi() % Consts.GRID_WIDTH, 0))
+	tetromino.connect("block_destroyed", self, "_on_block_destroyed")
 	$Tetrominos.add_child(tetromino)
 
 func random_tetromino_at(grid_position):
 	var tetrominos = preload("res://Tetromino/Tetromino.tscn").instance()
 	var type = tetrominos.get_random_type()
-	tetrominos.init(grid_position, tetrominos.get_random_shape(), type)
+	tetrominos.init(grid_position, tetrominos.get_random_shape(), Consts.WOOD_BLOCK)
 	return tetrominos
 
 func fire(mouse_position):
@@ -112,11 +113,18 @@ func _get_nearest_node(mouse_position):
 	endPosition += $Player.position
 	return space_state.intersect_ray($Player.position, endPosition, [$Player])
 
+func spawn_explosion_at(grid_position):
+	var explosion = preload("res://Tetromino/Effects/Explosion.tscn").instance()
+	explosion.position = grid_position * Consts.GRID_CELL_SIZE
+	explosion.position.x += Consts.GRID_HALF_CELL_SIZE
+	explosion.position.y += Consts.GRID_HALF_CELL_SIZE
+	add_child(explosion)
+	explosion.play()
+	
 # SIGNAL'S CALLBACKS
 
 func _on_Area2D_area_exited(area):
 	area.queue_free()
-	pass # replace with function body
 
 func _on_Tetrominos_turn_done():
 	set_state(State.WAITING_PLAYER_ACTION)
@@ -127,4 +135,7 @@ func _on_Player_action_done():
 	
 func _on_Bullet_action_done():
 	action_done()
+
+func _on_block_destroyed(position):
+	spawn_explosion_at(position)
 
