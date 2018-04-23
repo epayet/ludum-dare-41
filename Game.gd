@@ -19,6 +19,7 @@ func set_lives(count):
 	if count <= 0:
 		var loose = preload("res://GUI/Loose.tscn").instance()
 		add_child(loose)
+		$Music.stop()
 	
 func _on_World_add_score(amount):
 	$GUI.add_score(amount)
