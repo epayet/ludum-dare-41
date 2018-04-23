@@ -59,7 +59,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Menu" type="Node" index="0"]
+[node name="Menu" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -197,7 +197,6 @@ blend_times = [  ]
 
 [node name="Credits" type="Panel" parent="." index="1"]
 
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -255,7 +254,7 @@ bbcode_text = "[center][b][i]KalashKnight[/i][/b]
 
 
 [b]-- PROGRAMATION --[/b]
-Damien Gabrielle [i](@eptwalabah)[/i]
+Eptwalabha [i](@eptwalabah)[/i]
 Emmanuel Payet [i](@jakspining)[/i]
 Jean-Matthieu Golfier [i](@jmgolfier)[/i]
 Thomas Loubiou [i](@xabufr)[/i]
@@ -283,7 +282,7 @@ text = "KalashKnight
 
 
 -- PROGRAMATION --
-Damien Gabrielle (@eptwalabah)
+Eptwalabha (@eptwalabah)
 Emmanuel Payet (@jakspining)
 Jean-Matthieu Golfier (@jmgolfier)
 Thomas Loubiou (@xabufr)
@@ -339,7 +338,6 @@ _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="Rules" type="Panel" parent="." index="2"]
 
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0

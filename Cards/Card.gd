@@ -21,6 +21,16 @@ func _ready():
 func init(card_type):
 	self.card_type = card_type
 	$CardTypeSprite.frame = card_type
+	$Panel/Label.set_text(get_description(card_type))
+
+func get_description(card_type):
+	match card_type:
+		LAZER_CARD: return "Pew pew!"
+		LIFE_UP_CARD: return "From an\nitalian plumber\n\nwith love"
+		LIFE_DOWN_CARD: return "Yeah...\nnot my best spell"
+		BOX_SHOWER: return "They come\nin golden as well"
+		LIMITED_ACTION_TIME: return "Maybe time's\njust a construct\nof human perception\nAn illusion\ncreated by..."
+		_: "I don't know\nwhat I am\nplease be gentle"
 
 func get_random_type():
 	return randi() % CARD_TYPES
