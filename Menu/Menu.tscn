@@ -253,7 +253,7 @@ bbcode_enabled = true
 bbcode_text = "[center][b][i]KalashKnight[/i][/b]
 
 
-[b]-- PROGRAMATION --[/b]
+[b]-- PROGRAMMING --[/b]
 Eptwalabha [i](@eptwalabah)[/i]
 Emmanuel Payet [i](@jakspining)[/i]
 Jean-Matthieu Golfier [i](@jmgolfier)[/i]
@@ -281,7 +281,7 @@ tab_size = 4
 text = "KalashKnight
 
 
--- PROGRAMATION --
+-- PROGRAMMING --
 Eptwalabha (@eptwalabah)
 Emmanuel Payet (@jakspining)
 Jean-Matthieu Golfier (@jmgolfier)
@@ -393,7 +393,7 @@ bbcode_text = "You are a brave knight who wants to join his beloveled princess t
 You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 [center]*** RULES ***[/center]
-You have to avoid all the sh** the king's soldiers are sending to kill you. You can shot the block to move them.
+You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
 Sometimes your fairy godmother will give you a bonus card, but sometimes she is drunk and it's not a bonus.
 Show the king that you can escape this by scoring the maximum.
 Good luck."
@@ -405,7 +405,7 @@ text = "You are a brave knight who wants to join his beloveled princess to kiss 
 You crossed the mountain and defeated the terrible dragon with your kalashnikov to prove him you can take care of his daughter. You are right now on your way back.....
 
 *** RULES ***
-You have to avoid all the sh** the king's soldiers are sending to kill you. You can shot the block to move them.
+You have to avoid all the sh** the king's soldiers are sending to kill you. You can shoot the blocks to move or destroy them.
 Sometimes your fairy godmother will give you a bonus card, but sometimes she is drunk and it's not a bonus.
 Show the king that you can escape this by scoring the maximum.
 Good luck."
