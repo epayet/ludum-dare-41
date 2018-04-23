@@ -35,8 +35,15 @@ func move_to(direction):
 				time_unit, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	return tween.start()
 
+func _process(delta):
+	update_shooting_sight()
+
 func _physics_process(delta):
 	position = tween_position
+
+func update_shooting_sight():
+	var target = get_viewport().get_mouse_position()
+	$Aiming.points[1] = (target - position).normalized() * 1000
 
 func add_lives(count):
 	lives += count

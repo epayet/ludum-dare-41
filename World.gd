@@ -27,8 +27,6 @@ func _ready():
 	set_state(State.WAITING_PLAYER_ACTION)
 
 func _process(delta):
-	$ShootingSight.points[0] = $Player.position
-	update_sight_shooting()
 	match state:
 		State.WAITING_PLAYER_ACTION:
 			if Input.is_action_pressed("ui_left"):
@@ -83,13 +81,6 @@ func add_lazer(mouse_position):
 		set_state(State.MOVING_TETROMINOS)
 		add_child(lazer)
 		emit_signal("player_fires")
-
-func update_sight_shooting():
-	var target = get_viewport().get_mouse_position()
-	var playerPosition = $Player.position
-	var endPosition = (target - playerPosition).normalized() * 1000
-	endPosition += playerPosition
-	$ShootingSight.points[1] = endPosition
 
 func action_done():
 	next_spawn -= 1
