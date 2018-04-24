@@ -59,6 +59,13 @@ func body_entered_in_area(object):
 func is_unbreakable():
 	return block_type == Consts.OBSIDIAN_BLOCK
 
-func destroy_by_player():
+func destroy_by_player(delay = 0):
+	if delay > 0:
+		$Tween.interpolate_callback(self, delay, "do_destroy_by_player")
+		$Tween.start()
+	else:
+		do_destroy_by_player()
+
+func do_destroy_by_player():
 	emit_signal("block_destroyed_by_player", grid_position)
 	queue_free()
