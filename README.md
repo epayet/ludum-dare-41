@@ -17,3 +17,6 @@ Show the king that you can escape this by scoring the maximum.
 
 Good luck.
 
+## Updates
+
+ - 2018-04-24: Bugfix, complete line are now destroyed, removed outdated linux and mac version to keep only web version
