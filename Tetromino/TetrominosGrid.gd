@@ -72,6 +72,13 @@ func get_all_blocks():
 		blocks += tetromino.get_blocks()
 	return blocks
 
+func get_all_blocks_at(line_number):
+	var blocks = []
+	for block in get_all_blocks():
+		if block.grid_position.y == line_number:
+			blocks.append(block)
+	return blocks
+
 func get_block_from(grid_position):
 	for block in blocks:
 		if block.grid_position == grid_position:
@@ -118,16 +125,19 @@ func move_block_from_to(block, position, speed):
 	block.move(speed)
 
 func delete_line(line_number):
-	for i in range(Consts.GRID_WIDTH):
-		var block = grid[i][line_number]
-		grid[i][line_number] = null
-		if block:
-			block.queue_free()
+	var h = ceil(Consts.GRID_WIDTH / 2)
+	var a = 0.5 / h
+	for block in get_all_blocks_at(line_number):
+		var x = block.grid_position.x
+		grid[x][block.grid_position.y] = null
+		var delay = abs((x - h) * a)
+		block.destroy_by_player(delay)
 
 func is_line_complete(line_number):
 	for i in range(Consts.GRID_WIDTH):
 		if grid[i][line_number] == null:
 			return false
+	return true
 
 func append_new_action (action):
 	pre_actions.append(action)
