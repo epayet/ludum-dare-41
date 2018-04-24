@@ -128,6 +128,7 @@ func is_line_complete(line_number):
 	for i in range(Consts.GRID_WIDTH):
 		if grid[i][line_number] == null:
 			return false
+	return true
 
 func append_new_action (action):
 	pre_actions.append(action)
